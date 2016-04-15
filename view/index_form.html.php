@@ -1,7 +1,7 @@
 <main class="form-container">
     <div id="form-container-left">
         <h1>Login</h1>
-        <form class="login-form">
+        <form class="login-form" method="POST" action="">
             <ul>
                 <li>
                     <label>Username :</label><br/>
@@ -21,6 +21,7 @@
     </div>
     <div id="form-container-right">
         <h1>New here ?</h1>
+        <form class="register-form" method="POST" action="">
         <ul>
             <li>
                 <label>Choose a username :</label><br/>
@@ -37,5 +38,6 @@
             <li>
                 <input type="submit" name="register" value="register"></li>
         </ul>
+        </form>
     </div>
 </main>
