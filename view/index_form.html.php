@@ -12,7 +12,7 @@
                     <input type="password" name="password" value="">
                 </li>
                 <li>
-                    <input type="submit" name="submit" value="log in">
+                    <input type="submit" name="login" value="log in">
                 </li>
             </ul>
 

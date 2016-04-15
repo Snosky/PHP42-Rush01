@@ -13,7 +13,8 @@ abstract class Controller
 
     protected function render($filename, $vars = array())
     {
-        $vars['flash_message'] = $this->flash_message;
+        $vars['flash_message'] = $_SESSION['flash_message'];
+        unset($_SESSION['flash_message']);
         extract($vars);
         ob_start();
         $filename = ROOT.'view'.DS.$filename.'.html.php';
