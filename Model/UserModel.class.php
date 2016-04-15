@@ -7,12 +7,42 @@ class UserModel extends Model
 {
     public function save ( User $user )
     {
-
+        if ($user->getId())
+        {
+            $sql = 'UPDATE t_user 
+                    SET usr_username=:username,
+                        usr_email=:email,
+                        usr_password=:password,
+                        usr_salt=:salt,
+                        usr_role=:role
+                    WHERE usr_id=:userid';
+            $row = $this->getDb()->prepare($sql);
+            $row->bindValue(':userid', $user->getId(), \PDO::PARAM_INT);
+        }
+        else
+        {
+            $sql = 'INSERT INTO t_user (usr_username, usr_email, usr_password, usr_salt, usr_role) 
+                VALUES (:username, :email, :password, :salt, :role)';
+            $row = $this->getDb()->prepare($sql);
+        }
+        $row->bindValue(':userid', $user->getId(), \PDO::PARAM_INT);
+        $row->bindValue(':username', $user->getUsername(), \PDO::PARAM_STR);
+        $row->bindValue(':email', $user->getEmail(), \PDO::PARAM_STR);
+        $row->bindValue(':password', $user->getPassword(), \PDO::PARAM_STR);
+        $row->bindValue(':salt', $user->getSalt(), \PDO::PARAM_STR);
+        $row->bindValue(':role', $user->getRole(), \PDO::PARAM_STR);
+        $row->execute();
     }
 
-    public function delete ( User $user)
+    public function delete ( User $user )
     {
-        
+        $id = $user->getId();
+        $sql = 'DELETE *
+                FROM t_user
+                WHERE usr_id=:id';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':id', $id, \PDO::PARAM_INT);
+        $row->execute();
     }
 
 
@@ -52,7 +82,7 @@ class UserModel extends Model
                 FROM t_user
                 WHERE usr_email=:email';
         $row = $this->getDb()->prepare($sql);
-        $row->bindValue(':email', $emai, \PDO::PARAM_STR);
+        $row->bindValue(':email', $email, \PDO::PARAM_STR);
         $row = $row->execute();
 
         if ($row)
