@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="<?php WEBROOT ?>/web/css">
-        <title>no ski tue le ski</title>
-    </head>
-    <body>
-        <header>Header ici</header>
-        <footer>Footer ici</footer>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swag Alert!!</title>
+</head>
+<body>
+    <header>Header here</header>
+    <footer>Footer here</footer>
+</body>
 </html>
