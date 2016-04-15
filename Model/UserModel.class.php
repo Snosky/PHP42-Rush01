@@ -52,7 +52,8 @@ class UserModel extends Model
                 WHERE usr_id=:id';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':id', $id, \PDO::PARAM_INT);
-        $row = $row->execute();
+        $row->execute();
+        $row = $row->fetch();
 
         if ($row)
             return $this->buildDomainObject($row);
@@ -67,7 +68,8 @@ class UserModel extends Model
                 WHERE usr_username=:username';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':username', $username, \PDO::PARAM_STR);
-        $row = $row->execute();
+        $row->execute();
+        $row = $row->fetch();
         
         if ($row)
             return $this->buildDomainObject($row);
@@ -82,7 +84,8 @@ class UserModel extends Model
                 WHERE usr_email=:email';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':email', $email, \PDO::PARAM_STR);
-        $row = $row->execute();
+        $row->execute();
+        $row = $row->fetch();
 
         if ($row)
             return $this->buildDomainObject($row);
