@@ -3,6 +3,8 @@ namespace Controller;
 
 abstract class Controller
 {
+    private $flash_message = array();
+
     protected function redirect($url = '')
     {
         $url = WEBROOT.$url;
@@ -12,6 +14,7 @@ abstract class Controller
 
     protected function render($filename, $vars = array())
     {
+        $vars['flash_message'] = $this->flash_message;
         extract($vars);
         ob_start();
         $filename = ROOT.'view'.DS.$filename.'.html.php';
@@ -23,8 +26,15 @@ abstract class Controller
 
     protected function loadModel($modelName)
     {
+        $modelName = 'Model\\'.$modelName;
         $this->$modelName = new $modelName;
     }
+
+    protected function addFlashMessage($type, $message)
+    {
+        $this->flash_message[$type][] = $message;
+    }
+
 
     abstract public function homeAction();
 }
