@@ -48,7 +48,7 @@ class UserController extends Controller
 
             if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
             {
-                $this->addFlashMessage('error', 'Les adresses e-mail ne correspondent pas ou ne sont pas valide.');
+                $this->addFlashMessage('error', 'Les adresses e-mail ne correspondent pas ou ne sont pas valides.');
                 $form_is_valid = FALSE;
             }
 
