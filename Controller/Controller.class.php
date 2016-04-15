@@ -21,5 +21,10 @@ abstract class Controller
         include (ROOT.'view'.DS.'layout.html.php');
     }
 
+    protected function loadModel($modelName)
+    {
+        $this->$modelName = new $modelName;
+    }
+
     abstract public function homeAction();
 }
