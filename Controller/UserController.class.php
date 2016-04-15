@@ -34,7 +34,7 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            if ($this->UserModel->findByUsername($_POST['username']))
+            if ($this->UserModel->findByUsername($_POST['name']))
             {
                 $this->addFlashMessage('error', 'Le nom d\'utilisateur est deja utilise.');
                 $form_is_valid = FALSE;

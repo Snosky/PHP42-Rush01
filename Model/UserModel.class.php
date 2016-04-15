@@ -70,7 +70,7 @@ class UserModel extends Model
         $row->bindValue(':username', $username, \PDO::PARAM_STR);
         $row->execute();
         $row = $row->fetch();
-        
+
         if ($row)
             return $this->buildDomainObject($row);
         else 
