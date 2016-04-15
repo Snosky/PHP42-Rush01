@@ -1,6 +1,8 @@
 <?php
 namespace Model;
 
+use Domain\User;
+
 abstract class Model
 {
     /**
@@ -13,6 +15,7 @@ abstract class Model
         try
         {
             $this->db = new \PDO('mysql:host=mysql1.alwaysdata.com;dbname=snosky_rush01', 'snosky_42', 'i_am_42');
+            $this->db->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
         catch (\PDOException $e)
         {
@@ -29,4 +32,5 @@ abstract class Model
         return $this->db;
     }
 
+    abstract protected function buildDomainObject($row);
 }
