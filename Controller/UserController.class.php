@@ -1,12 +1,14 @@
 <?php
 namespace Controller;
 
+use Domain\User;
+
 class UserController extends Controller
 {
     public function homeAction()
     {
         $this->loadModel('UserModel');
-        
+
         if ($_POST && isset($_POST['login']))
         {
 
@@ -45,6 +47,12 @@ class UserController extends Controller
             if ($form_is_valid)
             {
                 $this->addFlashMessage('success', 'Vous etes inscrit mais pas encore en bdd :)');
+                $user = new User();
+                $user->setUsername($_POST['username']);
+                $user->setEmail($_POST['password']);
+                $user->hashPassword($_POST['password']);
+                $user->setRole('ROLE_USER');
+                $this->UserModel->save($user);
             }
         }
 
