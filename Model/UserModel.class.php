@@ -25,7 +25,6 @@ class UserModel extends Model
                 VALUES (:username, :email, :password, :salt, :role)';
             $row = $this->getDb()->prepare($sql);
         }
-        $row->bindValue(':userid', $user->getId(), \PDO::PARAM_INT);
         $row->bindValue(':username', $user->getUsername(), \PDO::PARAM_STR);
         $row->bindValue(':email', $user->getEmail(), \PDO::PARAM_STR);
         $row->bindValue(':password', $user->getPassword(), \PDO::PARAM_STR);
