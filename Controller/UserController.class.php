@@ -46,7 +46,7 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            $user->setUsername($_POST['username']);
+            $user->setUsername($_POST['name']);
             $user->setEmail($_POST['email']);
 
             if ($form_is_valid)
