@@ -3,12 +3,11 @@ namespace Model;
 
 use Controller\HomeController;
 
-class UserModel
+class UserModel extends Model
 {
     public function findAll()
     {
         $sql = 'SELECT * FROM t_user';
-        $this->getDb()->fetchAll($sql);
     }
 
 }
