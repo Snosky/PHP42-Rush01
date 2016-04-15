@@ -34,7 +34,7 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            if ($this->UserModel->getByUsername($_POST['username']))
+            if ($this->UserModel->findByUsername($_POST['username']))
             {
                 $this->addFlashMessage('error', 'Le nom d\'utilisateur est deja utilise.');
                 $form_is_valid = FALSE;
@@ -49,6 +49,12 @@ class UserController extends Controller
             if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
             {
                 $this->addFlashMessage('error', 'Les adresses e-mail ne correspondent pas ou ne sont pas valide.');
+                $form_is_valid = FALSE;
+            }
+
+            if ($this->UserModel->findByEmail($_POST['email']))
+            {
+                $this->addFlashMessage('error', 'L\'adresse email est deja utilise.');
                 $form_is_valid = FALSE;
             }
 
