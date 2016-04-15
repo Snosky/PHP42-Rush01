@@ -28,7 +28,7 @@ class UserController extends Controller
         {
             $form_is_valid = TRUE;
 
-            if (!isset($_POST['name']) || empty($_POST['name']) || !preg_match('/^[a-z0-9 -\@]{3,45}$/i', $_POST['name']))
+            if (!isset($_POST['name']) || empty($_POST['name']) || !preg_match('/^[a-z0-9 -\@_]{3,45}$/i', $_POST['name']))
             {
                 $this->addFlashMessage('error', 'Le nom d\'utilisateur doit etre alpha-numeric et contenir entre 3 et 45 caracteres.');
                 $form_is_valid = FALSE;
@@ -47,7 +47,7 @@ class UserController extends Controller
             }
 
             $user->setUsername($_POST['username']);
-            $user->setEmail($_POST['password']);
+            $user->setEmail($_POST['email']);
 
             if ($form_is_valid)
             {
