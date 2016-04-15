@@ -48,6 +48,14 @@ h1{
         padding-top: 32pt;
         border-top: 4px groove black;
     }
+    input{
+        width : 220px;
+        margin-bottom: 10px;
+    }
+    input[type=submit]{
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
 }
 
 #form-container-left{
@@ -55,4 +63,15 @@ h1{
  }
 #form-container-right{
     float: left;
+}
+@media screen and (min-width: 500px){
+    input{
+        width : 220px;
+        margin-bottom: 50px;
+    }
+    input[type=submit]{
+        width: 110px;
+        font-size: 1.1em;
+        margin-bottom: 25px;
+    }
 }
