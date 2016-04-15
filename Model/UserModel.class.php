@@ -1,10 +1,66 @@
 <?php
 namespace Model;
 
-use Controller\HomeController;
+use Domain\User;
 
 class UserModel extends Model
 {
+    public function save ( User $user )
+    {
+
+    }
+
+    public function delete ( User $user)
+    {
+        
+    }
+
+
+    public function findById ($id)
+    {
+        $sql = 'SELECT *
+                FROM t_user
+                WHERE usr_id=:id';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':id', $id, \PDO::PARAM_INT);
+        $row = $row->execute();
+
+        if ($row)
+            return $this->buildDomainObject($row);
+        else
+            return false;
+    }
+    
+    public function findByUsername ($username)
+    {
+        $sql = 'SELECT *
+                FROM t_user
+                WHERE usr_username=:username';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':username', $username, \PDO::PARAM_STR);
+        $row = $row->execute();
+        
+        if ($row)
+            return $this->buildDomainObject($row);
+        else 
+            return false;
+    }
+
+    public function findByEmail ($email)
+    {
+        $sql = 'SELECT *
+                FROM t_user
+                WHERE usr_email=:email';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':email', $emai, \PDO::PARAM_STR);
+        $row = $row->execute();
+
+        if ($row)
+            return $this->buildDomainObject($row);
+        else
+            return false;
+    }
+
     public function findAll()
     {
         $sql = 'SELECT * FROM t_user';
