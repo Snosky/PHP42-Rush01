@@ -34,6 +34,12 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
+            if ($this->UserModel->getByUsername($_POST['username']))
+            {
+                $this->addFlashMessage('error', 'Le nom d\'utilisateur est deja utilise.');
+                $form_is_valid = FALSE;
+            }
+
             if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $_POST['password-check'])
             {
                 $this->addFlashMessage('error', 'Les mots de passe ne correspondent pas.');
