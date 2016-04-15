@@ -3,7 +3,6 @@ namespace Controller;
 
 abstract class Controller
 {
-    private $flash_message = array();
 
     protected function redirect($url = '')
     {
@@ -32,7 +31,7 @@ abstract class Controller
 
     protected function addFlashMessage($type, $message)
     {
-        $this->flash_message[$type][] = $message;
+        $_SESSION['flash_message'][$type][] = $message;
     }
 
 
