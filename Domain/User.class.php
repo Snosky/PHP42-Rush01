@@ -134,4 +134,29 @@ class User
     {
         $this->_role = $role;
     }
+
+    /**
+     * @param $raw_password
+     * @return bool
+     * Test a password with actual user password
+     */
+    public function testPassword($raw_password)
+    {
+        $password = hash('whirlpool', $raw_password.$this->getSalt());
+        if ($password === $this->getPassword())
+            return true;
+        return false;
+
+    }
+
+    /**
+     * @param $raw_password
+     * Hash and save user password
+     */
+    public function hashPassword($raw_password)
+    {
+        if (!$this->getSalt())
+            $this->setSalt(substr(sha1(time()), 1, 35));
+        $this->setPassword(hash('whirlpool', $raw_password.$this->getSalt()));
+    }
 }

@@ -26,8 +26,8 @@ abstract class Controller
 
     protected function loadModel($modelName)
     {
-        $modelName = 'Model\\'.$modelName;
-        $this->$modelName = new $modelName;
+        $model = 'Model\\'.$modelName;
+        $this->$modelName = new $model;
     }
 
     protected function addFlashMessage($type, $message)
