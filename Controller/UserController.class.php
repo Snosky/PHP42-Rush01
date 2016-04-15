@@ -1,12 +1,16 @@
 <?php
 namespace Controller;
 
+use Domain\User;
+
 class UserController extends Controller
 {
     public function homeAction()
     {
         $this->loadModel('UserModel');
-        
+
+        $user = new User();
+
         if ($_POST && isset($_POST['login']))
         {
 
@@ -36,18 +40,26 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            if (!isset($_POST['email']) || empty($_POST['email']) || filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
+            if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
             {
                 $this->addFlashMessage('error', 'Les adresses e-mail ne correspondent pas ou ne sont pas valide.');
                 $form_is_valid = FALSE;
             }
 
+            $user->setUsername($_POST['username']);
+            $user->setEmail($_POST['password']);
+
             if ($form_is_valid)
             {
                 $this->addFlashMessage('success', 'Vous etes inscrit mais pas encore en bdd :)');
+                $user->hashPassword($_POST['password']);
+                $user->setRole('ROLE_USER');
+                $this->UserModel->save($user);
             }
         }
 
-        $this->render('index_form');
+        $this->render('index_form', array(
+            'userForm'  => $user,
+        ));
     }
 }
