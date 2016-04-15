@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Swag Alert!!</title>
+    <link rel="stylesheet" href="<?php echo WEBROOT; ?>/web/css/reset.css">
+    <link rel="stylesheet" href="<?php echo WEBROOT; ?>/web/css/style.css">
 </head>
 <body>
     <header>Header here</header>

@@ -25,14 +25,14 @@
         <ul>
             <li>
                 <label>Choose a username :</label><br/>
-                <input type="text" name="name" value="">
+                <input type="text" name="name" value="<?php echo $userForm->getUsername();?>">
             </li>
             <li><label>Choose a password :</label><br/>
                 <input type="password" name="password" value=""></li>
             <li><label>Retype your password :</label><br/>
                 <input type="password" name="password-check" value=""></li>
             <li><label>Your e-mail :</label><br/>
-                <input type="email" name="email" value=""></li>
+                <input type="email" name="email" value="<?php echo $userForm->getEmail();?>"></li>
             <li><label>Retype your e-mail :</label><br/>
                 <input type="email" name="email-check" value=""></li>
             <li>
