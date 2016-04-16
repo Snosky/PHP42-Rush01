@@ -7,8 +7,8 @@
                 </a>
             </div>
             <div class="game-launcher">
-                <a href=<?php echo WEBROOT ?>game/create class="launcher-button">Create</a>
-                <a href=<?php echo WEBROOT ?>game class="launcher-button">Join</a>
+                <a href=<?php echo WEBROOT ?>game/create class="launcher-button">Create Game</a>
+                <a href=<?php echo WEBROOT ?>game class="launcher-button">Join Game</a>
             </div>
         </div>
         <div class="rules">
