@@ -36,13 +36,12 @@ class ChatModel extends Model
 
     function save (ChatMessage $msg)
     {
-        $sql = 'INSERT INTO t_chat_message (msg_name, msg_content, usr_id, game_id) 
-                VALUES (:msg_name, :msg_content, :usr_id, :game_id)';
+        $sql = 'INSERT INTO t_chat_message (msg_content, usr_id, game_id) 
+                VALUES (:msg_content, :usr_id, :game_id)';
         $row = $this->getDb()->prepare($sql);
-        $row->bindValue(':msg_name', $msg->getId(), \PDO::PARAM_INT);
         $row->bindValue(':msg_content', $msg->getContent(), \PDO::PARAM_STR);
         $row->bindValue(':usr_id', $msg->getUser()->getId(), \PDO::PARAM_INT);
-        $row->bindValue(':game_id', $msg->getChatId());
+        $row->bindValue(':game_id', $msg->getChatId(), \PDO::PARAM_INT);
         $row->execute();
         $id = $this->getDb()->lastInsertId();
         $msg->setId($id);
