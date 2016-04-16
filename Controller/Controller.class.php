@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-use Domain\User;
+use Model\UserModel;
 
 abstract class Controller
 {
@@ -47,6 +47,12 @@ abstract class Controller
     protected function isConnected()
     {
         return (!empty($_SESSION['user']));
+    }
+
+    protected function getActualUser()
+    {
+        $userModel = new UserModel();
+        return $userModel->findById($_SESSION['user']['id']);
     }
 
     abstract public function homeAction();
