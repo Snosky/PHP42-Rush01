@@ -54,6 +54,9 @@ class GameController extends Controller
         $gameModel = new GameModel();
 
         $game = $gameModel->findById($game_id);
+        echo '<pre>';
+        print_r($game);
+        die();
         if (!$game) // If game doesn't exist
         {
             $this->addFlashMessage('error', 'This game doesn\'t exist.');
@@ -63,10 +66,7 @@ class GameController extends Controller
         $user = $this->getActualUser();
         $game->addPlayer($user);
 
-        $players = $gameModel->getAllPlayers($game);
-
         $this->render('game', array(
-            'players'   => $players,
             'game'  => $game,
         ));
     }
