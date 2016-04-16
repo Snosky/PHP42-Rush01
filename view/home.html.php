@@ -33,7 +33,11 @@
                 <span class="chat-sender">Keth</span><span class="chat-message">: Hmmm... OUiiiii !<br/>
          </div>
             <div id="chat-send-container">
-                <input type="text"><input type="submit">
+                <form action="<?php echo WEBROOT ?>chat/addMessage" method="POST" id="chat-send">
+                    <input type="text" name="message">
+                    <input type="hidden" name="chat_id" value="0">
+                    <input type="submit" value="Send message">
+                </form>
             </div>
         </div>
     </div>

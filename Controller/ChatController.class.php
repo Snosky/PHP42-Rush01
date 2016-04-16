@@ -41,6 +41,7 @@ class ChatController extends Controller
                 $chatModel = new ChatModel();
                 $chatModel->save($message);
                 $this->addFlashMessage('success', 'Message envoye');
+                $this->redirect();
             }
         }
 
