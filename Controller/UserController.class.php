@@ -2,6 +2,7 @@
 namespace Controller;
 
 use Domain\User;
+use Model\UserModel;
 
 class UserController extends Controller
 {
@@ -13,14 +14,14 @@ class UserController extends Controller
             $this->redirect();
         }
         
-        $this->loadModel('UserModel');
+        $userModel = new UserModel();
 
         $user = new User();
 
         if ($_POST && isset($_POST['login']))
         {
 
-            $user = $this->UserModel->findByUsername($_POST['name']);
+            $user = $userModel->findByUsername($_POST['name']);
             if ($user && $user->testPassword($_POST['password']))
             {
                 $this->addFlashMessage('success', 'Vous etes bien connecte en tant que '.$user->getUsername());
@@ -40,7 +41,7 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            if ($this->UserModel->findByUsername($_POST['name']))
+            if ($userModel->findByUsername($_POST['name']))
             {
                 $this->addFlashMessage('error', 'Le nom d\'utilisateur est deja utilise.');
                 $form_is_valid = FALSE;
@@ -58,7 +59,7 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            if ($this->UserModel->findByEmail($_POST['email']))
+            if ($userModel->findByEmail($_POST['email']))
             {
                 $this->addFlashMessage('error', 'L\'adresse email est deja utilise.');
                 $form_is_valid = FALSE;
@@ -72,7 +73,7 @@ class UserController extends Controller
                 $this->addFlashMessage('success', 'Vous etes inscrit mais pas encore en bdd :)');
                 $user->hashPassword($_POST['password']);
                 $user->setRole('ROLE_USER');
-                $this->UserModel->save($user);
+                $userModel->save($user);
             }
         }
 
