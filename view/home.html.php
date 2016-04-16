@@ -23,6 +23,9 @@
         <div id="inner-chat-container">
             <div id="chat-messages-display">
                 <span class="chat-sender">Matt</span><span class="chat-message">: Wesh !<br/></div>
+                <span class="chat-sender">Keth</span><span class="chat-message">: Wesh, c'est qui le meilleur??<br/></div>
+                <span class="chat-sender">Matt</span><span class="chat-message">: C'est toi, ô beau mâle !!!!<br/></div>
+                <span class="chat-sender">Keth</span><span class="chat-message">: Hmmm... OUiiiii !<br/></div>
             <div id="chat-send-container">
                 <input type="text"><input type="submit">
             </div>
