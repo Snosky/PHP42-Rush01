@@ -5,6 +5,10 @@ use Domain\User;
 
 class UserModel extends Model
 {
+    /**
+     * @param User $user
+     * Adds or Updates user in Database
+     */
     public function save ( User $user )
     {
         if ($user->getId())
@@ -12,7 +16,7 @@ class UserModel extends Model
             $sql = 'UPDATE t_user 
                     SET usr_username=:username,
                         usr_email=:email,
-                        usr_password=:password,
+                        usr_password=:pwd,
                         usr_salt=:salt,
                         usr_role=:role
                     WHERE usr_id=:userid';
@@ -22,17 +26,21 @@ class UserModel extends Model
         else
         {
             $sql = 'INSERT INTO t_user (usr_username, usr_email, usr_password, usr_salt, usr_role) 
-                VALUES (:username, :email, :password, :salt, :role)';
+                    VALUES (:username, :email, :pwd, :salt, :role)';
             $row = $this->getDb()->prepare($sql);
         }
         $row->bindValue(':username', $user->getUsername(), \PDO::PARAM_STR);
         $row->bindValue(':email', $user->getEmail(), \PDO::PARAM_STR);
-        $row->bindValue(':password', $user->getPassword(), \PDO::PARAM_STR);
+        $row->bindValue(':pwd', $user->getPassword(), \PDO::PARAM_STR);
         $row->bindValue(':salt', $user->getSalt(), \PDO::PARAM_STR);
         $row->bindValue(':role', $user->getRole(), \PDO::PARAM_STR);
         $row->execute();
     }
 
+    /**
+     * @param User $user
+     * Removes user from Database
+     */
     public function delete ( User $user )
     {
         $id = $user->getId();
@@ -44,7 +52,11 @@ class UserModel extends Model
         $row->execute();
     }
 
-
+    /**
+     * @param $id
+     * @return bool|User
+     * Search Database for a user with given id
+     */
     public function findById ($id)
     {
         $sql = 'SELECT *
@@ -60,7 +72,12 @@ class UserModel extends Model
         else
             return false;
     }
-    
+
+    /**
+     * @param $username
+     * @return bool|User
+     * Search Database for a user with given username
+     */
     public function findByUsername ($username)
     {
         $sql = 'SELECT *
@@ -77,6 +94,11 @@ class UserModel extends Model
             return false;
     }
 
+    /**
+     * @param $email
+     * @return bool|User
+     * Search Database for a user with given email
+     */
     public function findByEmail ($email)
     {
         $sql = 'SELECT *
@@ -93,9 +115,14 @@ class UserModel extends Model
             return false;
     }
 
+    /**
+     * @return array
+     * Returns all user in Database
+     */
     public function findAll()
     {
-        $sql = 'SELECT * FROM t_user';
+        $sql = 'SELECT *
+                FROM t_user';
         $data = $this->getDb()->query($sql);
 
         $return = array();
@@ -104,6 +131,12 @@ class UserModel extends Model
         return $return;
     }
 
+
+    /**
+     * @param $row
+     * @return User
+     * Creates new PHP Object 'User' from a given Databse entry
+     */
     protected function buildDomainObject($row)
     {
         $user = new User();
