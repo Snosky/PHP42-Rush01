@@ -18,6 +18,7 @@ abstract class Controller
     {
         $vars['flash_message'] = $_SESSION['flash_message'];
         $vars['isConnected'] = $this->isConnected();
+        $vars['user'] = $this->getActualUser();
         unset($_SESSION['flash_message']);
         extract($vars);
         ob_start();
