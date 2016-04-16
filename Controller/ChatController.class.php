@@ -1,0 +1,50 @@
+<?php
+namespace Controller;
+
+use Domain\ChatMessage;
+use Model\ChatModel;
+
+class ChatController extends Controller
+{
+    public function homeAction()
+    {
+        
+    }
+
+    public function addMessageAction()
+    {
+        if ($this->isConnected())
+        {
+            $this->addFlashMessage('error', 'You need to be connected.');
+            $this->redirect();
+        }
+
+        $form_is_valid = FALSE;
+        if ($_POST)
+        {
+            $form_is_valid = TRUE;
+            if (!isset($_POST['message']) || empty($_POST['message']))
+            {
+                $this->addFlashMessage('error', 'The message can\'t be empty.');
+                $form_is_valid = FALSE;
+            }
+
+            if ($form_is_valid)
+            {
+                $message = new ChatMessage();
+                $message->setContent($_POST['message']);
+                $message->setUser($this->getActualUser());
+                $chat_id = (int)$_POST['chat_id'];
+                if ($chat_id == 0)
+                    $chat_id = NULL;
+                $message->setChatId($chat_id);
+                $chatModel = new ChatModel();
+                $chatModel->save($message);
+            }
+        }
+
+        $this->render(NULL, array(
+            'form_is_valid' => $form_is_valid
+        ));
+    }
+}

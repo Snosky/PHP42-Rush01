@@ -9,9 +9,14 @@ abstract class Controller
 
     protected function redirect($url = '')
     {
-        $url = WEBROOT.$url;
-        header('Location:'.$url);
-        die();
+        if ($this->isAjax())
+            $this->render(NULL);
+        else
+        {
+            $url = WEBROOT . $url;
+            header('Location:' . $url);
+            die();
+        }
     }
 
     protected function render($filename, $vars = array())
@@ -20,13 +25,22 @@ abstract class Controller
         $vars['isConnected'] = $this->isConnected();
         $vars['user'] = $this->getActualUser();
         unset($_SESSION['flash_message']);
-        extract($vars);
-        ob_start();
-        $filename = ROOT.'view'.DS.$filename.'.html.php';
-        if (file_exists($filename))
-            include $filename;
-        $content_for_layout = ob_get_clean();
-        include (ROOT.'view'.DS.'layout.html.php');
+
+        if ($this->isAjax())
+        {
+            echo json_encode($vars);
+            die();
+        }
+        else
+        {
+            extract($vars);
+            ob_start();
+            $filename = ROOT . 'view' . DS . $filename . '.html.php';
+            if (file_exists($filename))
+                include $filename;
+            $content_for_layout = ob_get_clean();
+            include(ROOT . 'view' . DS . 'layout.html.php');
+        }
     }
 
     protected function loadModel($modelName)
@@ -63,5 +77,11 @@ abstract class Controller
         return $userModel->findById($_SESSION['user']['id']);
     }
 
+    protected function isAjax()
+    {
+        return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']));
+    }
+
+
     abstract public function homeAction();
-}
+}   
