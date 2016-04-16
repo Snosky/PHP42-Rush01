@@ -8,7 +8,6 @@
 </head>
 <body>
     <header>Header here</header>
-    <footer>Footer here</footer>
 
     <?php if (!empty($flash_message['error'])): ?>
         <div class="alert alert-error">
@@ -27,5 +26,6 @@
     <?php endif; ?>
 
     <?php echo $content_for_layout ?>
+    <footer>Footer here</footer>
 </body>
 </html>

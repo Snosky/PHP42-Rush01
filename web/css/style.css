@@ -83,3 +83,24 @@ h1{
         margin-bottom: 25px;
     }
 }
+
+.alert{
+    position: absolute;
+    left : 38%;
+    right: 38%;
+    min-width: 450px;
+}
+
+.alert p{
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+    color : white;
+    font-weight: bold;
+}
+.alert-success{
+    background-color: darkgreen;
+}
+.alert-error{
+    background-color: red;
+}
