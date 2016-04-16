@@ -9,6 +9,6 @@ class HomeController extends Controller
 
         echo '<pre>';
         print_r($this->UserModel->findAll());
-        echo 'Hello World';
+        $this->render('home');
     }
 }
