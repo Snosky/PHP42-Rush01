@@ -73,8 +73,12 @@ abstract class Controller
 
     protected function getActualUser()
     {
-        $userModel = new UserModel();
-        return $userModel->findById($_SESSION['user']['id']);
+        if ($this->isConnected())
+        {
+            $userModel = new UserModel();
+            return $userModel->findById($_SESSION['user']['id']);
+        }
+        return NULL;
     }
 
     protected function isAjax()

@@ -17,6 +17,8 @@ class UserController extends Controller
         $userModel = new UserModel();
 
         $user = new User();
+        $user->setEmail('');
+        $user->setUsername('');
 
         if ($_POST && isset($_POST['login']))
         {
@@ -41,25 +43,25 @@ class UserController extends Controller
                 $form_is_valid = FALSE;
             }
 
-            else if ($userModel->findByUsername($_POST['name']))
+            if ($userModel->findByUsername($_POST['name']))
             {
                 $this->addFlashMessage('error', 'Username already taken.');
                 $form_is_valid = FALSE;
             }
 
-            else if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $_POST['password-check'])
+            if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $_POST['password-check'])
             {
                 $this->addFlashMessage('error', 'Passwords doesn\'t match.');
                 $form_is_valid = FALSE;
             }
 
-            else if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
+            if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
             {
                 $this->addFlashMessage('error', 'E-mails doesn\'t match or are invalids.');
                 $form_is_valid = FALSE;
             }
 
-            else if ($userModel->findByEmail($_POST['email']))
+            if ($userModel->findByEmail($_POST['email']))
             {
                 $this->addFlashMessage('error', 'E-mail is already taken.');
                 $form_is_valid = FALSE;
