@@ -8,7 +8,7 @@ header{
     background-color: chocolate;
 }
 footer{
-    position: absolute;
+    position: fixed;
     background-color: chocolate;
     height: 50px;
     width: 100%;
@@ -103,4 +103,127 @@ h1{
 }
 .alert-error{
     background-color: red;
+}
+
+#chat-container{
+    float: right;
+    height: 100%;
+    width: 50%;
+}
+
+#home-container{
+    width : 100%;
+    height: 1145px;
+    min-width: 500px;
+}
+.left-top-home-part{
+    width: 100%;
+    padding-top: 40px;
+    height: 400px;
+}
+.left-home-container{
+    float: left;
+    height: 100%;
+    width: 50%;
+    min-width: 600px;
+}
+.lore-link{
+    width: 40%;
+    min-width: 200px;
+    margin-left: 0px;
+    height: 100%;
+    float: right;
+}
+.lore-link a{
+    text-align: center;
+    width: 200px;
+    display: block;
+    background-image: url("http://vignette3.wikia.nocookie.net/warhammer40k/images/7/7b/Purity_Seals_variants.jpg/revision/latest?cb=20131025185049");
+    height: 140px;
+    padding-top: 10px;
+    line-height: 140px;
+    margin-top: 50px;
+    margin-left: 20px;
+    color: black;
+    text-decoration: none;
+    font-family: fantasy;
+    font-size: 36pt;
+    font-weight: bold;
+    background-repeat: no-repeat;
+}
+
+.game-launcher{
+    float: left;
+    width: 60%;
+    height: 100%;
+}
+
+.launcher-button{
+    min-width: 200px;
+    margin: 50px 70px;
+    text-align: center;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    background-color: lightblue;
+    border: groove #3ec6dd 4px;
+    text-decoration: none;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: fantasy;
+    border-radius: 15px;
+}
+.launcher-button:hover{
+    color: #ffcb01;
+    background-color: #192714;
+    border-color: #ffe800;
+}
+
+.rules{
+    padding: 0 80px;
+}
+.rules h1{
+    padding: -10px;
+    text-align: center;
+}
+.rules p{
+    font-size: 16pt;
+    margin-bottom: 15px;
+    font-family: "Big Caslon";
+}
+.rules p:first-letter{
+    font-size: 30pt;
+    font-family: "Big Caslon";
+}
+
+#chat-messages-display{
+    background-color: antiquewhite;
+    margin: 0 10%;
+    padding-left: 2%;
+    height: 500px;
+}
+#chat-container{
+    padding-top: 80px;
+}
+.chat-sender{
+    font-weight: bold;
+    font-size: 14pt;
+}
+#chat-messages-display{
+    padding-top: 10px;
+}
+.chat-message{
+    margin-left: 1%;
+}
+#chat-send-container{
+    margin: 30px 10%;
+}
+#chat-send-container input[type=text]{
+    width: 70%;
+}
+#chat-send-container input[type=submit]{
+    margin-left: 5%;
+}
+#inner-chat-container{
+    padding-top: 80px;
 }
