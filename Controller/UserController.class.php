@@ -81,4 +81,12 @@ class UserController extends Controller
             'userForm'  => $user,
         ));
     }
+
+    public function disconnectAction()
+    {
+        $this->disconnectUser();
+        $this->addFlashMessage('error', 'You\'re disconnected.');
+        $this->redirect();
+    }
+
 }

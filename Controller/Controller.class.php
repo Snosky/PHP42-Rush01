@@ -45,6 +45,12 @@ abstract class Controller
         $_SESSION['user']['id'] = $user->getId();
     }
 
+    protected function disconnectUser()
+    {
+        unset($_SESSION['user']);
+    }
+
+
     protected function isConnected()
     {
         return (!empty($_SESSION['user']));
