@@ -40,7 +40,7 @@ class UserModel extends Model
                 FROM t_user
                 WHERE usr_id=:id';
         $row = $this->getDb()->prepare($sql);
-        $row->bindValue(':id', $id, \PDO::PARAM_INT);
+        $row->bindValue(':id', $id, \   PDO::PARAM_INT);
         $row->execute();
     }
 

@@ -14,7 +14,7 @@
         <div class="rules">
             <h1>-Rules-</h1>
             <p>Treat your opponents as you would treat your mother.</p>
-            <p>Don't be a crybaby, losing is a part of the game just as much as winnning</p>
+            <p>Don't be a crybaby, losing is a part of the game just as much as winning</p>
             <p>No aimbot</p>
             <p>Bug exploiting is allowed as long as you don't use a third party program to do it.</p>
         </div>
