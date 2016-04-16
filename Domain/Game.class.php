@@ -22,7 +22,7 @@ class Game
     private $admin;
 
     /**
-     * @var User array
+     * @var array User
      * All players != admin
      */
     private $players = array();
@@ -84,7 +84,7 @@ class Game
     }
 
     /**
-     * @return User array
+     * @return array User
      */
     public function getPlayers()
     {

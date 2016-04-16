@@ -9,7 +9,12 @@ class GameController extends Controller
 {
     public function homeAction()
     {
-        // TODO: Implement homeAction() method.
+        $gameModel = new GameModel();
+        $games = $gameModel->findAll();
+
+        $this->render('game_home', array(
+            'games' => $games,
+        ));
     }
     
     public function createAction()
@@ -60,8 +65,18 @@ class GameController extends Controller
             $this->redirect();
         }
 
-        /*$user = $this->getActualUser();
-        $game->addPlayer($user);*/
+        if (count($game->getPlayers()) == 3) // If game is full 1 admin + 3 players
+        {
+            $this->addFlashMessage('error', 'This game is full.');
+            $this->redirect();
+        }
+
+        $user = $this->getActualUser();
+        if (!key_exists($user->getId(), $game->getPlayers()) && $game->getAdmin()->getId() != $user->getId()) // If new player
+        {
+            //$game->addPlayer($user);
+            $gameModel->addPlayer($game, $user);
+        }
 
         $this->render('game', array(
             'game'  => $game,

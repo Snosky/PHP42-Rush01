@@ -16,6 +16,7 @@ class GameModel extends Model
         $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
         $row->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
         $row->execute();
+        $game->addPlayer($user);
     }
     
     public function removePlayer (Game $game, User $user)
