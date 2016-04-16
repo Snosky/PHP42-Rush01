@@ -120,8 +120,6 @@ class GameModel extends Model
                 GROUP BY game_id';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':id', $id, \PDO::PARAM_INT);
-        print_r($row);
-        die();
         $row->execute();
         $row = $row->fetch();
 
@@ -161,7 +159,7 @@ class GameModel extends Model
         $userModel = new UserModel();
         $user = $userModel->findById($row['usr_id']);
         $game->setAdmin($user);
-        if (array_key_exists('players_id', $row))
+        if (array_key_exists('players_id', $row) && !is_null($row['players_id']))
         {
             $list = explode(',', $row['players_id']);
             foreach ($list AS $user)

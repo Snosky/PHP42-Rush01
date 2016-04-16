@@ -60,8 +60,8 @@ class GameController extends Controller
             $this->redirect();
         }
 
-        $user = $this->getActualUser();
-        $game->addPlayer($user);
+        /*$user = $this->getActualUser();
+        $game->addPlayer($user);*/
 
         $this->render('game', array(
             'game'  => $game,
