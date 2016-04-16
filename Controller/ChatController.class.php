@@ -13,7 +13,7 @@ class ChatController extends Controller
 
     public function addMessageAction()
     {
-        if ($this->isConnected())
+        if (!$this->isConnected())
         {
             $this->addFlashMessage('error', 'You need to be connected.');
             $this->redirect();
@@ -40,11 +40,12 @@ class ChatController extends Controller
                 $message->setChatId($chat_id);
                 $chatModel = new ChatModel();
                 $chatModel->save($message);
+                $this->addFlashMessage('success', 'Message envoye');
             }
         }
 
         $this->render(NULL, array(
-            'form_is_valid' => $form_is_valid
+            'form_is_valid' => $form_is_valid,
         ));
     }
 }
