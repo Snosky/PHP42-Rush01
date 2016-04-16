@@ -42,7 +42,7 @@ class ChatModel extends Model
         $row->bindValue(':msg_name', $msg->getId(), \PDO::PARAM_INT);
         $row->bindValue(':msg_content', $msg->getContent(), \PDO::PARAM_STR);
         $row->bindValue(':usr_id', $msg->getUser()->getId(), \PDO::PARAM_INT);
-        $row->bindValue(':game_id', $msg->getChatId(), \PDO::PARAM_INT);
+        $row->bindValue(':game_id', $msg->getChatId());
         $row->execute();
         $id = $this->getDb()->lastInsertId();
         $msg->setId($id);
