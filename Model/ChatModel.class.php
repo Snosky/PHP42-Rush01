@@ -34,9 +34,18 @@ class ChatModel extends Model
     }
 
 
-    function save ($msg)
+    function save (ChatMessage $msg)
     {
-
+        $sql = 'INSERT INTO t_chat_message (msg_name, msg_content, usr_id, game_id) 
+                VALUES (:msg_name, :msg_content, :usr_id, :game_id)';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':msg_name', $msg->getId(), \PDO::PARAM_INT);
+        $row->bindValue(':msg_content', $msg->getContent(), \PDO::PARAM_STR);
+        $row->bindValue(':usr_id', $msg->getUser()->getId(), \PDO::PARAM_INT);
+        $row->bindValue(':game_id', $msg->getChatId(), \PDO::PARAM_INT);
+        $row->execute();
+        $id = $this->getDb()->lastInsertId();
+        $msg->setId($id);
     }
 
     /**
@@ -50,7 +59,7 @@ class ChatModel extends Model
         $msg->setId($row['msg_id']);
         $msg->setContent($row['msg_content']);
         $usr = new UserModel();
-        $usr = $usr->findById($row[usr_id]);
+        $usr = $usr->findById($row['usr_id']);
         $msg->setUser($usr);
         $msg->setChatId($row['game_id']);
         return $msg;
