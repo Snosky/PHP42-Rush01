@@ -52,7 +52,7 @@ class GameModel extends Model
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':game_id', $game->getId() , \PDO::PARAM_INT);
         $row->bindValue(':pwd', $game->getPassword(), \PDO::PARAM_STR);
-        $row->bindValue(':admin', $game->getAdmin() , \PDO::PARAM_INT);
+        $row->bindValue(':admin', $game->getAdmin(), \PDO::PARAM_INT);
         $row->execute();
     }
 
@@ -62,7 +62,7 @@ class GameModel extends Model
                 VALUES (:pwd, :admin)';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':pwd', $game->getPassword(), \PDO::PARAM_STR);
-        $row->bindValue(':admin', $game->getAdmin() , \PDO::PARAM_INT);
+        $row->bindValue(':admin', $game->getAdmin(), \PDO::PARAM_INT);
         $row->execute();
         $id = $this->getDb()->lastInsertId();
         $game->setId($id);

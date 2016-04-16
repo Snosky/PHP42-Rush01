@@ -16,7 +16,7 @@ class GameController extends Controller
     {
         if (!$this->isConnected())
         {
-            $this->addFlashMessage('error', 'Vous devez etre connecte pour cree une partie.');
+            $this->addFlashMessage('error', 'You need to be connected to access to this page.');
             $this->redirect('user');
         }
 
@@ -33,7 +33,7 @@ class GameController extends Controller
             $user = $this->getActualUser();
             $game->setAdmin($user);
             $gameModel->save($game);
-            $this->addFlashMessage('success', 'Partie creee.');
+            $this->addFlashMessage('success', 'Game created.');
             $this->redirect('game/join/'.$game->getId());
         }
 
@@ -46,7 +46,7 @@ class GameController extends Controller
     {
         if (!$this->isConnected())
         {
-            $this->addFlashMessage('error', 'Vous devez etre connecte pour rejoindre une partie.');
+            $this->addFlashMessage('error', 'You need to be connected to access to this page.');
             $this->redirect('user');
         }
 
@@ -56,11 +56,17 @@ class GameController extends Controller
         $game = $gameModel->findById($game_id);
         if (!$game) // If game doesn't exist
         {
-            $this->addFlashMessage('error', 'Cette partie n\'existe pas.');
+            $this->addFlashMessage('error', 'This game doesn\'t exist.');
             $this->redirect();
         }
 
+        $user = $this->getActualUser();
+        $game->addPlayer($user);
+
+        $players = $gameModel->getAllPlayers($game);
+
         $this->render('game', array(
+            'players'   => $players,
             'game'  => $game,
         ));
     }

@@ -22,6 +22,12 @@ class Game
     private $admin;
 
     /**
+     * @var User array
+     * All players != admin
+     */
+    private $players = array();
+
+    /**
      * @return int
      */
     public function getId()
@@ -67,5 +73,21 @@ class Game
     public function setAdmin(User $admin)
     {
         $this->admin = $admin;
+    }
+
+    /**
+     * @param User $player
+     */
+    public function addPlayer(User $player)
+    {
+        $this->players[] = $player;
+    }
+
+    /**
+     * @return User array
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }

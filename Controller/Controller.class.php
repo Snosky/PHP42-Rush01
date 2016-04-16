@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use Domain\User;
 use Model\UserModel;
 
 abstract class Controller
