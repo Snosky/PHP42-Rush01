@@ -9,26 +9,25 @@ class UserModel extends Model
      * @param User $user
      * Adds or Updates user in Database
      */
-    public function save ( User $user )
+    public function save (User $user)
     {
         if ($user->getId())
-        {
-            $sql = 'UPDATE t_user 
-                    SET usr_username=:username,
-                        usr_email=:email,
-                        usr_password=:pwd,
-                        usr_salt=:salt,
-                        usr_role=:role
-                    WHERE usr_id=:userid';
-            $row = $this->getDb()->prepare($sql);
-            $row->bindValue(':userid', $user->getId(), \PDO::PARAM_INT);
-        }
+            $this->update($user);
         else
-        {
-            $sql = 'INSERT INTO t_user (usr_username, usr_email, usr_password, usr_salt, usr_role) 
-                    VALUES (:username, :email, :pwd, :salt, :role)';
-            $row = $this->getDb()->prepare($sql);
-        }
+            $this->add($user);
+    }
+
+    private function update (User $user)
+    {
+        $sql = 'UPDATE t_user 
+                SET usr_username=:username,
+                    usr_email=:email,
+                    usr_password=:pwd,
+                    usr_salt=:salt,
+                    usr_role=:role
+                WHERE usr_id=:userid';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':userid', $user->getId(), \PDO::PARAM_INT);
         $row->bindValue(':username', $user->getUsername(), \PDO::PARAM_STR);
         $row->bindValue(':email', $user->getEmail(), \PDO::PARAM_STR);
         $row->bindValue(':pwd', $user->getPassword(), \PDO::PARAM_STR);
@@ -37,11 +36,26 @@ class UserModel extends Model
         $row->execute();
     }
 
+    private function add (User $user)
+    {
+        $sql = 'INSERT INTO t_user (usr_username, usr_email, usr_password, usr_salt, usr_role) 
+                    VALUES (:username, :email, :pwd, :salt, :role)';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':username', $user->getUsername(), \PDO::PARAM_STR);
+        $row->bindValue(':email', $user->getEmail(), \PDO::PARAM_STR);
+        $row->bindValue(':pwd', $user->getPassword(), \PDO::PARAM_STR);
+        $row->bindValue(':salt', $user->getSalt(), \PDO::PARAM_STR);
+        $row->bindValue(':role', $user->getRole(), \PDO::PARAM_STR);
+        $row->execute();
+        $id = $this->getDb()->lastInsertId();
+        $user->setId($id);
+    }
+
     /**
      * @param User $user
      * Removes user from Database
      */
-    public function delete ( User $user )
+    public function delete (User $user)
     {
         $id = $user->getId();
         $sql = 'DELETE *
@@ -117,7 +131,7 @@ class UserModel extends Model
 
     /**
      * @return array
-     * Returns all user in Database
+     * Returns all users in Database
      */
     public function findAll()
     {
@@ -135,7 +149,7 @@ class UserModel extends Model
     /**
      * @param $row
      * @return User
-     * Creates new PHP Object 'User' from a given Databse entry
+     * Creates new PHP Object 'User' from a given Database entry
      */
     protected function buildDomainObject($row)
     {

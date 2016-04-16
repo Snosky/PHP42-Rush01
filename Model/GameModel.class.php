@@ -4,32 +4,92 @@ namespace Model;
 
 
 use Domain\Game;
+use Domain\User;
 
 class GameModel extends Model
 {
-
+    
+    public function addPlayer (Game $game, User $user)
+    {
+        $sql = 'INSERT INTO t_game_has_t_user (game_id, usr_id)
+                VALUES (:game_id, :usr_id)';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
+        $row->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
+        $row->execute();
+    }
+    
+    public function removePlayer (Game $game, User $user)
+    {
+        $sql = 'DELETE *
+                FROM t_game
+                WHERE game_id=:game_id
+                    AND usr_id=:usr_id';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
+        $row->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
+        $row->execute();
+    }
+    
+    /**
+     * @param Game $game
+     * Adds or Updates game in Database
+     */
     public function save ( Game $game )
     {
         if ($game->getId())
-        {
-            $sql = 'UPDATE t_game
-                    SET game_password=:pwd,
-                        usr_id=:admin
-                    WHERE game_id=:game_id';
-            $row = $this->getDb()->prepare($sql);
-            $row->bindValue(':game_id', $game->getId() , \PDO::PARAM_INT);
-        }
+            $this->update($game);
         else
-        {
-            $sql = 'INSERT INTO t_game (game_password, usr_id) 
-                    VALUES (:pwd, :admin)';
-            $row = $this->getDb()->prepare($sql);
-        }
+            $this->add($game);
+    }
+
+    private function update (Game $game)
+    {
+        $sql = 'UPDATE t_game
+                SET game_password=:pwd,
+                    usr_id=:admin
+                WHERE game_id=:game_id';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':game_id', $game->getId() , \PDO::PARAM_INT);
         $row->bindValue(':pwd', $game->getPassword(), \PDO::PARAM_STR);
         $row->bindValue(':admin', $game->getAdmin() , \PDO::PARAM_INT);
         $row->execute();
     }
 
+    private function add (Game $game)
+    {
+        $sql = 'INSERT INTO t_game (game_password, usr_id) 
+                VALUES (:pwd, :admin)';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':pwd', $game->getPassword(), \PDO::PARAM_STR);
+        $row->bindValue(':admin', $game->getAdmin() , \PDO::PARAM_INT);
+        $row->execute();
+        $id = $this->getDb()->lastInsertId();
+        $game->setId($id);
+    }
+
+
+
+    /**
+     * @param Game $game
+     * Removes game from Database
+     */
+    public function delete ( Game $game )
+    {
+        $id = $game->getId();
+        $sql = 'DELETE *
+                FROM t_game
+                WHERE game_id=:id';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':id', $id, \   PDO::PARAM_INT);
+        $row->execute();
+    }
+
+    /**
+     * @param $admin
+     * @return bool|Game
+     * Search Database for a game with given admin
+     */
     public function findByAdmin( $admin )
     {
         $sql = 'SELECT *
@@ -46,6 +106,11 @@ class GameModel extends Model
             return false;
     }
 
+    /**
+     * @param $id
+     * @return bool|Game
+     * Search Database for a game with given id
+     */
     public function findById( $id )
     {
         $sql = 'SELECT *
@@ -62,6 +127,10 @@ class GameModel extends Model
             return false;
     }
 
+    /**
+     * @return array
+     * Returns all games in Database
+     */
     public function findAll()
     {
         $sql = 'SELECT *
@@ -74,6 +143,11 @@ class GameModel extends Model
         return $return;
     }
 
+    /**
+     * @param $row
+     * @return Game
+     * Creates new PHP Object 'game' from a given Database entry
+     */
     protected function buildDomainObject($row)
     {
         $game = new Game();
