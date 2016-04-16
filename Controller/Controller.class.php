@@ -21,6 +21,8 @@ abstract class Controller
 
     protected function render($filename, $vars = array())
     {
+        if (!isset($_SESSION['flash_message']))
+            $_SESSION['flash_message'] = NULL;
         $vars['flash_message'] = $_SESSION['flash_message'];
         $vars['isConnected'] = $this->isConnected();
         $vars['user'] = $this->getActualUser();

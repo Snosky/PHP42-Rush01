@@ -14,6 +14,8 @@ function __autoload($classname)
         include $file;
 }
 
+if (!isset($_GET['url']))
+    $_GET['url'] = '';
 $url = explode('/', $_GET['url']);
 $controller = (!empty($url[0])) ? 'Controller\\'.ucfirst($url[0]).'Controller' : 'Controller\HomeController';
 array_shift($url);
