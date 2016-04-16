@@ -1,6 +1,8 @@
 <?php
 namespace Controller;
 
+use Domain\User;
+
 abstract class Controller
 {
 
@@ -35,6 +37,16 @@ abstract class Controller
         $_SESSION['flash_message'][$type][] = $message;
     }
 
+    protected function connectUser(User $user)
+    {
+        $_SESSION['user']['name'] = $user->getUsername();
+        $_SESSION['user']['id'] = $user->getId();
+    }
+
+    protected function isConnected()
+    {
+        return (!empty($_SESSION['user']));
+    }
 
     abstract public function homeAction();
 }

@@ -7,6 +7,12 @@ class UserController extends Controller
 {
     public function homeAction()
     {
+        if ($this->isConnected())
+        {
+            $this->addFlashMessage('error', 'Vous etes deja connecte.');
+            $this->redirect();
+        }
+        
         $this->loadModel('UserModel');
 
         $user = new User();
@@ -18,7 +24,7 @@ class UserController extends Controller
             if ($user && $user->testPassword($_POST['password']))
             {
                 $this->addFlashMessage('success', 'Vous etes bien connecte en tant que '.$user->getUsername());
-                // TODO : Connect user;
+                $this->connectUser($user);
                 $this->redirect();
             }
             else
