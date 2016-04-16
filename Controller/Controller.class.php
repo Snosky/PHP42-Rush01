@@ -16,6 +16,7 @@ abstract class Controller
     protected function render($filename, $vars = array())
     {
         $vars['flash_message'] = $_SESSION['flash_message'];
+        $vars['isConnected'] = $this->isConnected();
         unset($_SESSION['flash_message']);
         extract($vars);
         ob_start();
