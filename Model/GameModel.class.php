@@ -114,14 +114,17 @@ class GameModel extends Model
     {
         $sql = 'SELECT t_game.*, GROUP_CONCAT(CONVERT(t_join.usr_id, CHAR(8))) as players_id
                 FROM t_game
-                JOIN t_game_has_t_user
+                LEFT JOIN t_game_has_t_user
                   AS t_join ON t_join.game_id = t_game.game_id
                 WHERE t_game.game_id = :id
                 GROUP BY game_id';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':id', $id, \PDO::PARAM_INT);
+        print_r($row);
+        die();
         $row->execute();
         $row = $row->fetch();
+
 
         if ($row)
             return $this->buildDomainObject($row);
