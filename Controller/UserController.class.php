@@ -10,7 +10,7 @@ class UserController extends Controller
     {
         if ($this->isConnected())
         {
-            $this->addFlashMessage('error', 'Vous etes deja connecte.');
+            $this->addFlashMessage('error', 'You are already logged.');
             $this->redirect();
         }
         
@@ -24,12 +24,12 @@ class UserController extends Controller
             $user = $userModel->findByUsername($_POST['name']);
             if ($user && $user->testPassword($_POST['password']))
             {
-                $this->addFlashMessage('success', 'Vous etes bien connecte en tant que '.$user->getUsername());
+                $this->addFlashMessage('success', 'You are logged as '.$user->getUsername());
                 $this->connectUser($user);
                 $this->redirect();
             }
             else
-                $this->addFlashMessage('error', 'Le nom d\'utilisateur et le mot de passe ne correspondent pas.');
+                $this->addFlashMessage('error', 'Username and Password doesn\'t match.');
         }
         else if ($_POST && isset($_POST['register']))
         {
@@ -37,31 +37,31 @@ class UserController extends Controller
 
             if (!isset($_POST['name']) || empty($_POST['name']) || !preg_match('/^[a-z0-9 -\@_]{3,45}$/i', $_POST['name']))
             {
-                $this->addFlashMessage('error', 'Le nom d\'utilisateur doit etre alpha-numeric et contenir entre 3 et 45 caracteres.');
+                $this->addFlashMessage('error', 'Username must be alpha-numeric and contain between 3 and 45 characters.');
                 $form_is_valid = FALSE;
             }
 
-            if ($userModel->findByUsername($_POST['name']))
+            else if ($userModel->findByUsername($_POST['name']))
             {
-                $this->addFlashMessage('error', 'Le nom d\'utilisateur est deja utilise.');
+                $this->addFlashMessage('error', 'Username already taken.');
                 $form_is_valid = FALSE;
             }
 
-            if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $_POST['password-check'])
+            else if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $_POST['password-check'])
             {
-                $this->addFlashMessage('error', 'Les mots de passe ne correspondent pas.');
+                $this->addFlashMessage('error', 'Passwords doesn\'t match.');
                 $form_is_valid = FALSE;
             }
 
-            if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
+            else if (!isset($_POST['email']) || empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || $_POST['email'] != $_POST['email-check'])
             {
-                $this->addFlashMessage('error', 'Les adresses e-mail ne correspondent pas ou ne sont pas valides.');
+                $this->addFlashMessage('error', 'E-mails doesn\'t match or are invalids.');
                 $form_is_valid = FALSE;
             }
 
-            if ($userModel->findByEmail($_POST['email']))
+            else if ($userModel->findByEmail($_POST['email']))
             {
-                $this->addFlashMessage('error', 'L\'adresse email est deja utilise.');
+                $this->addFlashMessage('error', 'E-mail is already taken.');
                 $form_is_valid = FALSE;
             }
 
