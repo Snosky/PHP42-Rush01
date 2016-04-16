@@ -8,7 +8,6 @@ use Domain\User;
 
 class GameModel extends Model
 {
-    
     public function addPlayer (Game $game, User $user)
     {
         $sql = 'INSERT INTO t_game_has_t_user (game_id, usr_id)
@@ -113,9 +112,12 @@ class GameModel extends Model
      */
     public function findById( $id )
     {
-        $sql = 'SELECT *
+        $sql = 'SELECT t_game.*, GROUP_CONCAT(CONVERT(t_join.usr_id, CHAR(8))) as players_id
                 FROM t_game
-                WHERE game_id=:id';
+                JOIN t_game_has_t_user
+                  AS t_join ON t_join.game_id = t_game.game_id
+                WHERE t_game.game_id = 1
+                GROUP BY game_id';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':id', $id, \PDO::PARAM_INT);
         $row->execute();
@@ -156,25 +158,16 @@ class GameModel extends Model
         $userModel = new UserModel();
         $user = $userModel->findById($row['usr_id']);
         $game->setAdmin($user);
+        if (array_key_exists('players_id', $row))
+        {
+            $list = explode(',', $row['players_id']);
+            foreach ($list AS $user)
+            {
+                $user = $userModel->findById($user);
+                $game->addPlayer($user);
+            }
+        }
         return $game;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
