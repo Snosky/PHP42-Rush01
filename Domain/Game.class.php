@@ -80,7 +80,7 @@ class Game
      */
     public function addPlayer(User $player)
     {
-        $this->players[] = $player;
+        $this->players[$player->getId()] = $player;
     }
 
     /**
