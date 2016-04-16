@@ -159,6 +159,29 @@ h1{
     color : darkgoldenrod;
 }
 
+.sign-button {
+    min-width: 200px;
+    margin: 10px 100px;
+    text-align: center;
+    display: block;
+    height: 40px;
+    line-height: 44px;
+    background-color: black;
+    border: groove darkgoldenrod 4px;
+    color: mintcream;
+    text-decoration: none;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: fantasy;
+    border-radius: 15px;
+}
+
+.sign-button:hover{
+    color: darkgoldenrod;
+    background-color: mintcream;
+    border-color: darkgoldenrod;
+}
+
 .game-launcher{
     float: left;
     width: 60%;
@@ -181,6 +204,7 @@ h1{
     font-family: fantasy;
     border-radius: 15px;
 }
+
 .launcher-button:hover{
     color: darkgoldenrod;
     background-color: mintcream;

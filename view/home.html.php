@@ -7,8 +7,8 @@
                 </a>
             </div>
             <div class="game-launcher">
-                <a href="#" class="launcher-button">Create</a>
-                <a href="#" class="launcher-button">Join</a>
+                <a href=<?php echo WEBROOT ?>game/create class="launcher-button">Create</a>
+                <a href=<?php echo WEBROOT ?>game class="launcher-button">Join</a>
             </div>
         </div>
         <div class="rules">
@@ -20,7 +20,12 @@
         </div>
     </div>
     <div id="chat-container">
-        <div id="inner-chat-container">
+            <?php if ($isConnected): ?>
+                <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
+            <?php endif ; if (!$isConnected): ?>
+                <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
+            <?php endif; ?>
+            <div id="inner-chat-container">
             <div id="chat-messages-display">
                 <span class="chat-sender">Matt</span><span class="chat-message">: Wesh !<br/>
                 <span class="chat-sender">Keth</span><span class="chat-message">: Wesh, c'est qui le meilleur??<br/>

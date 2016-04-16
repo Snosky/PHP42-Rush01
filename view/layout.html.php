@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo WEBROOT; ?>/web/css/style.css">
 </head>
 <body>
-    <header>Header here</header>
+    <header><a href=<?php echo WEBROOT ?>>Home Page</a></header>
 
     <?php if (!empty($flash_message['error'])): ?>
         <div class="alert alert-error">
