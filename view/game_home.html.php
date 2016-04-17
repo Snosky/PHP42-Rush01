@@ -34,17 +34,40 @@
             url: document.location.href,
             dataType: 'json',
             success: function (data) {
-                console.log(data.games[1].password);
-                data.games.each(function(key, value){
+                var gamesList = document.getElementById("games-list");
+                while(gamesList.firstChild){
+                    gamesList.removeChild(gamesList.firstChild);
+                }
+                console.log(data.games);
+                $.each(data.games, function(key, value){
+                    var father = document.createElement("tr");
                     var node = document.createElement("td");
                     var textnode;
                     if (value.password)
-                        textnode = "Password required";
+                        textnode = document.createTextNode("Password required");
                     else
-                        textnode = "";
-                    
-                    $("#games-list").appendChild("<div>");
-                })
+                        textnode = document.createTextNode("");
+                    node.appendChild(textnode);
+                    father.appendChild(node);
+                    document.getElementById("games-list").appendChild(father);
+                    node = document.createElement("td");
+                    textnode = document.createTextNode(value.admin.username + "'s game");
+                    node.appendChild(textnode);
+                    father.appendChild(node);
+                    var players = 0;
+                    $.each(value.players, function(key, value){ players++; });
+                    node = document.createElement("td");
+                    textnode = document.createTextNode((players + 1) + "/4");
+                    node.appendChild(textnode);
+                    father.appendChild(node);
+                    node = document.createElement("td");
+                    textnode = document.createElement("a");
+                    var link = document.createTextNode("Join game");
+                    textnode.appendChild(link);
+                    textnode.href = "#";
+                    node.appendChild(textnode);
+                    father.appendChild(node);
+                });
             }
         })
     }
