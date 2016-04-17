@@ -7,6 +7,12 @@ use Model\UserModel;
 abstract class Controller
 {
 
+    public function __construct()
+    {
+        if (!isset($_SESSION['date_co']) || empty($_SESSION['date_co']) || $_SESSION['date_co'] < time() - (8 * 3600)) // Si date_co existe pas ou est trop ancien (8h diff)
+            $_SESSION['date_co'] = time();
+    }
+
     protected function redirect($url = '')
     {
         if ($this->isAjax())

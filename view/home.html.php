@@ -27,11 +27,10 @@
             <?php endif; ?>
             <div id="inner-chat-container">
             <div id="chat-messages-display">
-                <span class="chat-sender">Matt</span><span class="chat-message">: Wesh !<br/>
-                <span class="chat-sender">Keth</span><span class="chat-message">: Wesh, c'est qui le meilleur??<br/>
-                <span class="chat-sender">Matt</span><span class="chat-message">: C'est toi, ô beau mâle !!!!<br/>
-                <span class="chat-sender">Keth</span><span class="chat-message">: Hmmm... OUiiiii !<br/>
-         </div>
+                <?php foreach ($chatMessages as $msg): ?>
+                    <span class="chat-sender">[<?php echo $msg->getDate() ?>] <?php echo $msg->getUser()->getUsername(); ?></span>: <?php echo $msg->getContent(); ?><br />
+                <?php endforeach; ?>
+            </div>
             <div id="chat-send-container">
                 <form action="<?php echo WEBROOT ?>chat/addMessage" method="POST" id="chat-send">
                     <input type="text" name="message">

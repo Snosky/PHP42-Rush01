@@ -1,11 +1,17 @@
 <?php
 namespace Controller;
 
+use Model\ChatModel;
+
 class HomeController extends Controller
 {
     public function homeAction()
     {
-        $this->loadModel('UserModel');
-        $this->render('home');
+        $chatModel = new ChatModel();
+        $chatMessages = $chatModel->findByGame(NULL);
+
+        $this->render('home', array(
+            'chatMessages'   => $chatMessages,
+        ));
     }
 }

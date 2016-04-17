@@ -24,6 +24,11 @@ class ChatMessage
     private $chat_id;
 
     /**
+     * @var
+     */
+    private $date;
+
+    /**
      * @return int
      */
     public function getId()
@@ -85,5 +90,21 @@ class ChatMessage
     public function setContent($content)
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
     }
 }
