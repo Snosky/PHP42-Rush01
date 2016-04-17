@@ -89,7 +89,7 @@ class ChatMessage
      */
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = htmlentities($content);
     }
 
     /**
