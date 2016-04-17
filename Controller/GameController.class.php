@@ -27,8 +27,14 @@ class GameController extends Controller
 
         // Models
         $gameModel = new GameModel();
-
         $game = new Game();
+        $game->setId(0);
+
+        if ($gameModel->userAlreadyPlay($this->getActualUser(), $game))
+        {
+            $this->addFlashMessage('error', 'You already playing in another game.');
+            $this->redirect();
+        }
 
         if ($_POST)
         {
@@ -71,6 +77,17 @@ class GameController extends Controller
             $this->redirect();
         }
 
+        if (!$gameModel->userInGame($this->getActualUser(), $game) && $game->getPassword() && $_POST)
+        {
+            if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $game->getPassword())
+            {
+                $this->addFlashMessage('error', 'Wrong password.');
+                $this->redirect('game/join/'.$game->getId());
+            }
+            else
+                $gameModel->addPlayer($game, $this->getActualUser());
+        }
+
         // Si le mec est pas deja dans la game et qu'un pwd est requis
         if (!$gameModel->userInGame($this->getActualUser(), $game) && $game->getPassword())
         {
@@ -86,17 +103,8 @@ class GameController extends Controller
             $this->redirect();
         }
         
-        if ($game->getPassword() && $_POST)
-        {
-            if (!isset($_POST['password']) || empty($_POST['password']) || $_POST['password'] != $game->getPassword())
-            {
-                $this->addFlashMessage('error', 'Wrong password.');
-                $this->redirect('game/join/'.$game->getId());
-            }
-        }
-        
-        if (!$gameModel->userInGame($this->getActualUser(), $game))
-            $gameModel->addPlayer($game, $this->getActualUser());
+        /*if (!$gameModel->userInGame($this->getActualUser(), $game))
+            $gameModel->addPlayer($game, $this->getActualUser());*/
 
         $this->render('game', array(
             'game'  => $game,
