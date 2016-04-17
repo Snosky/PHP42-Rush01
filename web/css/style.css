@@ -395,3 +395,10 @@ thead>tr{
     font-family: fantasy;
     margin-top: 1.8em;
 }
+
+.home-btn{
+    display: block;
+    height: 100%;
+    width : 150px;
+    background: white;
+}
