@@ -1,0 +1,4 @@
+ChatMessage class provide all method for a chat message
+
+The class provides the following methods:
+    Getters and Setters
