@@ -32,7 +32,7 @@ class ChatController extends Controller
             if ($form_is_valid)
             {
                 $message = new ChatMessage();
-                $message->setContent($_POST['message']);
+                $message->setContent($_POST['content']);
                 $message->setUser($this->getActualUser());
                 $chat_id = (int)$_POST['chat_id'];
                 if ($chat_id == 0)
