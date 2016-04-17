@@ -2,18 +2,16 @@ webroot = document.location.href;
 
 function addToChat(data)
 {
-    if (data.date)
+console.log('addtochat');
+    if (data.date !== 'undefined')
     {
         date = Date.parse(data.date.date);
         date = new Date(date);
     }
     else
-    {
-        date = new Date();
-        date = date.getTime();
-    }
+        date = new Date((new Date).getTime());
     dateOption = {hour: 'numeric', minute: 'numeric'}
-    $('#chat-messages-display').append('<span class="chat-sender">[' + date.toLocaleString("fr-FR", dateOption) + ']' + data.user.username + '</span>: ' + data.content + '<br/>');
+    $('#chat-messages-display').append('<span class="chat-sender">[' + date.toLocaleString("fr-FR", dateOption) + '] ' + data.user.username + '</span>: ' + data.content + '<br/>');
 }
 
 function reloadChat()
@@ -23,8 +21,9 @@ function reloadChat()
         dataType: 'json',
         success: function(data){
             $('#chat-messages-display').html('');
-            console.log(data);
-            $.each(data.chatMessages, function(key, value){
+            if (data.messages === 'undefined')
+                data.messages = date.getMessages;
+            $.each(data.messages, function(key, value){
                 addToChat(value);
             });
         },
@@ -42,8 +41,7 @@ function scrollToBot()
 
 $(document).ready(function(){
     scrollToBot();
-    reloadChat();
-    //setInterval(reloadChat, 1000);
+    setInterval(reloadChat, 1000);
 
     // Send message
     $('#chat-send').submit(function(e){
