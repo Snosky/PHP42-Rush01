@@ -112,13 +112,24 @@ class GameModel extends Model
     public function delete ( Game $game )
     {
         $id = $game->getId();
-        $sql = 'DELETE *
+        $sql = 'DELETE
                 FROM t_game
                 WHERE game_id=:id';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':id', $id, \   PDO::PARAM_INT);
         $row->execute();
     }
+
+    function deleteUserFromGame(User $user, Game $game)
+    {
+        $sql = 'DELETE FROM t_game_has_t_user
+                WHERE usr_id=:usr_id AND game_id=:game_id';
+        $req = $this->getDb()->prepare($sql);
+        $req->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
+        $req->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
+        $req->execute();
+    }
+
 
     /**
      * @param $admin

@@ -102,12 +102,26 @@ class GameController extends Controller
             $this->addFlashMessage('error', 'You already playing in another game.');
             $this->redirect();
         }
-        
-        /*if (!$gameModel->userInGame($this->getActualUser(), $game))
-            $gameModel->addPlayer($game, $this->getActualUser());*/
-
         $this->render('game', array(
             'game'  => $game,
         ));
+    }
+
+    public function leaveAction($game_id)
+    {
+        $gameModel = new GameModel();
+        $game = $gameModel->findById($game_id);
+
+        if ($this->getActualUser()->getId() == $game->getAdmin()->getId())
+        {
+            $gameModel->delete($game);
+            $this->addFlashMessage('success', 'Game deleted.');
+        }
+        else
+        {
+            $gameModel->deleteUserFromGame($this->getActualUser(), $game);
+            $this->addFlashMessage('success', 'You successfuly leave the game.');
+        }
+        $this->redirect();
     }
 }
