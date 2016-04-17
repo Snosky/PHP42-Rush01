@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-class InstallController
+class InstallController extends Controller
 {
     public function homeAction()
     {
