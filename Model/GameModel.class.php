@@ -13,17 +13,34 @@ class GameModel extends Model
      * @return mixed
      * Checks if $user is in game
      */
-    public function UserInGame( User $user)
+    public function userAlreadyPlay(User $user, Game $game)
     {
         $sql = 'SELECT COUNT(*)
                 FROM t_game, t_game_has_t_user
-                WHERE t_game.usr_id=:usr_id
-                  OR  t_game_has_t_user.usr_id=:usr_id';
+                WHERE (t_game.usr_id=:usr_id OR  t_game_has_t_user.usr_id=:usr_id)
+                    AND t_game.game_id<>:game_id 
+                    AND t_game_has_t_user.game_id<>:game_id';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
+        $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
         $row->execute();
 
-        return $row->fetch();
+        return $row->fetch(\PDO::FETCH_NUM)[0];
+    }
+
+    public function userInGame(User $user, Game $game)
+    {
+        $sql = 'SELECT COUNT(*)
+                FROM t_game, t_game_has_t_user
+                WHERE 
+                    (t_game.usr_id=:usr_id OR  t_game_has_t_user.usr_id=:usr_id)
+                    AND (t_game.game_id=:game_id OR t_game_has_t_user.game_id=:game_id)';
+        $req = $this->getDb()->prepare($sql);
+        $req->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
+        $req->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req->fetch(\PDO::FETCH_NUM)[0];
     }
 
     public function addPlayer (Game $game, User $user)

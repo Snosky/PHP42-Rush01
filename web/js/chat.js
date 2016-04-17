@@ -25,8 +25,9 @@ function reloadChat()
                 addToChat(value);
             });
         },
-        error: function(){
+        error: function(data){
             console.log('Can\'t reload chat.');
+            console.log(data);
         }
     });
     scrollToBot();

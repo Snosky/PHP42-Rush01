@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 error_reporting(E_ALL);
 
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));

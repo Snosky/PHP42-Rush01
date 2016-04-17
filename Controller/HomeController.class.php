@@ -7,12 +7,7 @@ class HomeController extends Controller
 {
     public function homeAction()
     {
-        $chatModel = new ChatModel();
-        $chatMessages = $chatModel->findByGame(NULL);
-
-        $this->render('home', array(
-            'chatMessages'   => $chatMessages,
-        ));
+        $this->render('home');
     }
 
     public function loreAction()

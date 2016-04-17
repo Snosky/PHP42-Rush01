@@ -1,5 +1,6 @@
 <html>
 <header>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo WEBROOT ?>web/css/chat.css">
 </header>
 <body>

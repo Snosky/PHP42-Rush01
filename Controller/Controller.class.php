@@ -13,6 +13,12 @@ abstract class Controller
             $_SESSION['date_co'] = time();
     }
 
+    public function getUserDate()
+    {
+        if (isset($_SESSION['date_co']))
+            return $_SESSION['date_co'];
+    }
+
     protected function redirect($url = '')
     {
         if ($this->isAjax())
@@ -52,6 +58,7 @@ abstract class Controller
             else
                 echo $content_for_layout;
         }
+        return true;
     }
 
     protected function loadModel($modelName)

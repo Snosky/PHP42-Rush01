@@ -24,7 +24,7 @@ class ChatController extends Controller
             $this->addFlashMessage('error', 'You need to be connected.');
             $this->redirect();
         }
-
+        
         $form_is_valid = FALSE;
         if ($_POST)
         {
