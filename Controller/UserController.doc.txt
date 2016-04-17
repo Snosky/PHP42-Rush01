@@ -1,0 +1,11 @@
+This class regroup all function necessary to interact with user page
+
+The class provides the following methods:
+
+homeAction():
+    Do all the things for the home page
+    register or login user
+
+disconnectUser():
+    Do all the things to disconnect a user
+
