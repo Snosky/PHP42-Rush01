@@ -1,13 +1,13 @@
 <table>
     <thead>
         <tr>
-            <td></td>
+            <td id="refresh-game-btn" onclick="refreshGameList()">Refresh</td>
             <td>Game</td>
             <td>Players</td>
             <td></td>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="game-list">
     <?php foreach ($games as $game): ?>
     <tr>
         <td>
@@ -26,3 +26,8 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<script>
+    function refreshGameList(){
+        $("#game-list").load(location.href + " #game-list>*","");
+    }
+</script>
