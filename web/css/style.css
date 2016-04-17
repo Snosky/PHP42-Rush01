@@ -359,3 +359,39 @@ thead>tr{
     position: absolute;
     bottom: 0;
 }
+
+#main-lore {
+    color: darkgoldenrod;
+    background: midnightblue;
+    height: 1100px;
+    padding-top: 80px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#main-lore p{
+    font-size: 1.5em;
+}
+.lore-question{
+    margin-top: 80px;
+    text-align: center;
+}
+.lore-title{
+    text-align: center;
+}
+.lore-under-title{
+    margin-top: 20px;
+    margin-bottom:10px;
+    font-size: 28pt;
+    text-align: center;
+}
+
+.hour{
+    background: black;
+    color: red;
+    font-weight: bold;
+}
+#main-lore h3{
+    font-size: 1.8em;
+    font-family: fantasy;
+    margin-top: 1.8em;
+}
