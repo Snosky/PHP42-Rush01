@@ -14,7 +14,7 @@ abstract class Model
     {
         try
         {
-            $this->db = new \PDO('mysql:host=mysql1.alwaysdata.com;dbname=snosky_rush01', 'snosky_42', 'i_am_42');
+            $this->db = new \PDO('mysql:host=mysql-kethbad.alwaysdata.net;dbname=kethbad_rush01', 'kethbad_42', 'i_am_42');
             $this->db->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
         catch (\PDOException $e)

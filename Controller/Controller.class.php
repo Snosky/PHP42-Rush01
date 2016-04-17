@@ -36,7 +36,7 @@ abstract class Controller
 
         if ($this->isAjax())
         {
-            echo json_encode($vars);
+            echo json_encode($vars, JSON_OBJECT_AS_ARRAY);
             die();
         }
         else
