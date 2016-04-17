@@ -15,8 +15,6 @@
                     <input type="submit" name="login" value="log in">
                 </li>
             </ul>
-
-            <a href="#">Forgot your password ?</a>
         </form>
     </div>
     <div id="form-container-right">
