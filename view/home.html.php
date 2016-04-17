@@ -2,7 +2,7 @@
     <div class="left-home-container">
         <div class="left-top-home-part">
             <div class="lore-link">
-                <a href="#">
+                <a href="<?php echo (WEBROOT . "home/lore/");?>">
                     -Lore-
                 </a>
             </div>

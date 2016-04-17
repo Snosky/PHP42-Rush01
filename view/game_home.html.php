@@ -3,7 +3,7 @@
     <table class="games-list-container left-home-container">
         <thead>
             <tr>
-                <td>Private/Public</td>
+                <td style="border:none"></td>
                 <td style="font-weight: bolder;">Game</td>
                 <td>Players</td>
             </tr>
@@ -49,11 +49,13 @@
                     var father = document.createElement("tr");
                     var node = document.createElement("td");
                     var textnode;
-                    if (value.password)
-                        textnode = document.createTextNode("Password required");
+                    if (value.password) {
+                        textnode = document.createTextNode("_");
+                        node.className = "locked ";
+                    }
                     else
                         textnode = document.createTextNode("");
-                    node.className = 'password-games';
+                    node.className += 'password-games';
                     node.appendChild(textnode);
                     father.appendChild(node);
                     document.getElementById("games-list").appendChild(father);

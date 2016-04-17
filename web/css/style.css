@@ -310,6 +310,9 @@ thead>tr{
     text-align: right;
     border: none;
 }
+.locked:before{
+    content: "🔒";
+}
 .name-games{
     border: 1px solid black;
     font-size: 1.1em;
