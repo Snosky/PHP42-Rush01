@@ -35,7 +35,7 @@
                 <form action="<?php echo WEBROOT ?>chat/addMessage" method="POST" id="chat-send">
                     <input type="text" name="content">
                     <input type="hidden" name="chat_id" value="0">
-                    <input type="submit" value="Send message">
+                    <input autocomplete="off" submit" value="Send message">
                 </form>
             </div>
         </div>
