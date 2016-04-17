@@ -7,3 +7,4 @@ Players :
         <li><?php echo $player->getUsername(); ?></li>
     <?php endforeach; ?>
 </ul>
+<iframe src="<?php echo WEBROOT ?>chat/home/<?php echo $game->getId() ?>" frameborder="0"></iframe>

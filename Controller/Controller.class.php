@@ -25,7 +25,7 @@ abstract class Controller
         }
     }
 
-    protected function render($filename, $vars = array())
+    protected function render($filename, $vars = array(), $layout = TRUE)
     {
         if (!isset($_SESSION['flash_message']))
             $_SESSION['flash_message'] = NULL;
@@ -36,7 +36,7 @@ abstract class Controller
 
         if ($this->isAjax())
         {
-            echo json_encode($vars, JSON_OBJECT_AS_ARRAY);
+            echo json_encode($vars);
             die();
         }
         else
@@ -47,7 +47,10 @@ abstract class Controller
             if (file_exists($filename))
                 include $filename;
             $content_for_layout = ob_get_clean();
-            include(ROOT . 'view' . DS . 'layout.html.php');
+            if ($layout)
+                include(ROOT . 'view' . DS . 'layout.html.php');
+            else
+                echo $content_for_layout;
         }
     }
 

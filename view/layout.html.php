@@ -31,6 +31,5 @@
 
     <?php echo $content_for_layout ?>
     <footer>Footer here</footer>
-    <script type="text/javascript" src="<?php echo WEBROOT ?>web/js/chat.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
-webroot = document.location.href;
+webroot = 'http://' + document.location.host;
 
 function addToChat(data)
 {
-    if (data.date !== 'undefined')
+    if (data.date && data.date !== 'undefined')
     {
         date = Date.parse(data.date.date);
         date = new Date(date);
@@ -15,8 +15,9 @@ function addToChat(data)
 
 function reloadChat()
 {
+    var chat_id = $('#chat-container').attr('chatid');
     $.ajax({
-        url: webroot + 'chat/getMessages/',
+        url: webroot + '/getMessages/' + chat_id,
         dataType: 'json',
         success: function(data){
             $('#chat-messages-display').html('');
@@ -55,7 +56,7 @@ $(document).ready(function(){
 
         $.ajax({
           type: "POST",
-          url: webroot + 'chat/addMessage',
+          url: webroot + '/chat/addMessage',
           data: msg_data,
           dataType: 'json',
           success: function(data){

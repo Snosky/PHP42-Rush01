@@ -19,25 +19,10 @@
             <p>Bug exploiting is allowed as long as you don't use a third party program to do it.</p>
         </div>
     </div>
-    <div id="chat-container">
-        <?php if ($isConnected): ?>
-            <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
-        <?php endif ; if (!$isConnected): ?>
-            <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
-        <?php endif; ?>
-        <div id="inner-chat-container">
-            <div id="chat-messages-display">
-                <?php foreach ($chatMessages as $msg): ?>
-                    <span class="chat-sender">[<?php echo $msg->getDate()->format('G:i') ?>] <?php echo $msg->getUser()->getUsername(); ?></span>: <?php echo $msg->getContent(); ?><br />
-                <?php endforeach; ?>
-            </div>
-            <div id="chat-send-container">
-                <form action="<?php echo WEBROOT ?>chat/addMessage" method="POST" id="chat-send">
-                    <input autocomplete="off" type="text" name="content">
-                    <input type="hidden" name="chat_id" value="0">
-                    <input type="submit" value="Send message">
-                </form>
-            </div>
-        </div>
-    </div>
+    <?php if ($isConnected): ?>
+        <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
+    <?php endif ; if (!$isConnected): ?>
+        <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
+    <?php endif; ?>
+    <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0"></iframe>
 </main>
