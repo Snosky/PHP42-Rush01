@@ -105,8 +105,8 @@ class InstallController extends Controller
                 catch (\PDOException $e)
                 {
                     echo 'Erreur sql : '. $e;
+                    $error = TRUE;
                 }
-                $error = TRUE;
             }
         }
         if (!$error)
