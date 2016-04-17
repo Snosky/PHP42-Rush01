@@ -14,4 +14,9 @@ class HomeController extends Controller
             'chatMessages'   => $chatMessages,
         ));
     }
+
+    public function loreAction()
+    {
+        $this->render('lore');
+    }
 }
