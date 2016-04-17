@@ -49,4 +49,14 @@ class ChatController extends Controller
             'form_is_valid' => $form_is_valid,
         ));
     }
+
+    public function getMessagesAction($chat_id = NULL)
+    {
+        $chatModel = new ChatModel();
+        $messages = $chatModel->findByGame($chat_id);
+
+        $this->render(NULL, array(
+            'messages'  => $messages,
+        ));
+    }
 }

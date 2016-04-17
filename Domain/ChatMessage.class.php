@@ -1,7 +1,7 @@
 <?php
 namespace Domain;
 
-class ChatMessage
+class ChatMessage implements \JsonSerializable
 {
     /**
      * @var integer
@@ -97,7 +97,7 @@ class ChatMessage
      */
     public function getDate()
     {
-        return $this->date;
+        return new \DateTime($this->date);
     }
 
     /**
@@ -106,5 +106,15 @@ class ChatMessage
     public function setDate($date)
     {
         $this->date = $date;
+    }
+
+    public function jsonSerialize()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['user'] = $this->getUser();
+        $data['content'] = $this->getContent();
+        $data['date'] = $this->getDate();
+        return $data;
     }
 }

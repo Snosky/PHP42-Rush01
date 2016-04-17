@@ -7,18 +7,18 @@ use Domain\Game;
 class ChatModel extends Model
 {
 
-    function findByGame ($game)
+    function findByGame ($chat_id)
     {
-        if ($game instanceof Game)
+        if ($chat_id)
         {
             // A Edit, SELECT WHERE date >= Date d'arrive de l'user sur la page
             $sql = 'SELECT *
                     FROM t_chat_message
                     WHERE game_id=:game_id
-                    ORDER BY msg_date DESC
+                    ORDER BY msg_id 
                     LIMIT 100';
             $row = $this->getDb()->prepare($sql);
-            $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
+            $row->bindValue(':game_id', $chat_id, \PDO::PARAM_INT);
         }
         else
         {
