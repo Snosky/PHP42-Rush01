@@ -17,7 +17,7 @@ function reloadChat()
 {
     var chat_id = $('#chat-container').attr('chatid');
     $.ajax({
-        url: webroot + '/getMessages/' + chat_id,
+        url: webroot + '/chat/getMessages/' + chat_id,
         dataType: 'json',
         success: function(data){
             $('#chat-messages-display').html('');
