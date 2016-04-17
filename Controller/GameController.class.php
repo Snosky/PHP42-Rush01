@@ -28,6 +28,7 @@ class GameController extends Controller
         // Models
         $gameModel = new GameModel();
         $game = new Game();
+        $game->setId(0);
 
         if ($gameModel->userAlreadyPlay($this->getActualUser(), $game))
         {
