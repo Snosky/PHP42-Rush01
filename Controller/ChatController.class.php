@@ -23,7 +23,7 @@ class ChatController extends Controller
         if ($_POST)
         {
             $form_is_valid = TRUE;
-            if (!isset($_POST['message']) || empty($_POST['message']))
+            if (!isset($_POST['content']) || empty($_POST['content']))
             {
                 $this->addFlashMessage('error', 'The message can\'t be empty.');
                 $form_is_valid = FALSE;

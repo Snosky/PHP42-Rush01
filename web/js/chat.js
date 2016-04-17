@@ -18,7 +18,6 @@ function reloadChat()
             });
         }
     });
-    console.log('Chat Reload');
 }
 
 function scrollToBot()
@@ -44,6 +43,7 @@ $('#chat-send').submit(function(e){
       data: msg_data,
       dataType: 'json',
       success: function(data){
+      console.log(data);
         msg_data.user = data.user;
         addToChat(msg_data);
         input_message.val("");
