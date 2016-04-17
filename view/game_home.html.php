@@ -15,22 +15,7 @@
             <!-- Here is the list of games -->
         </tbody>
     </table>
-    <div id="chat-container">
-        <div id="inner-chat-container">
-            <div id="chat-messages-display">
-                <?php foreach ($chatMessages as $msg): ?>
-                    <span class="chat-sender">[<?php echo $msg->getDate()->format('G:i') ?>] <?php echo $msg->getUser()->getUsername(); ?></span>: <?php echo $msg->getContent(); ?><br />
-                <?php endforeach; ?>
-            </div>
-            <div id="chat-send-container">
-                <form action="<?php echo WEBROOT ?>chat/addMessage" method="POST" id="chat-send">
-                    <input autocomplete="off" type="text" name="content">
-                    <input type="hidden" name="chat_id" value="0">
-                    <input type="submit" value="Send message">
-                </form>
-            </div>
-        </div>
-    </div>
+    <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0" width="100%" height="100%"></iframe>
 </main>
 <script>
     function refreshGamesList() {

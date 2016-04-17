@@ -24,5 +24,5 @@
     <?php endif ; if (!$isConnected): ?>
         <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
     <?php endif; ?>
-    <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0"></iframe>
+    <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0" width="100%" height="100%"></iframe>
 </main>

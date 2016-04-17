@@ -1,0 +1,21 @@
+#chat-messages-display{
+    background-color: antiquewhite;
+    padding-left: 2%;
+    height: 85%;
+}
+.chat-sender{
+    font-weight: bold;
+    font-size: 14pt;
+}
+#chat-messages-display{
+    padding-top: 10px;
+    overflow-y: scroll;
+}
+.chat-message{
+    margin-left: 1%;
+}
+
+#chat-container input { margin: 0; border: none; border-bottom: 1px solid #000; border-top: 1px solid #000; height: 30px; padding: 5px 0; float:left }
+#chat-container input[name=content] { padding: 0 2%; width: 80%; }
+#chat-container input[type=submit] { width: 20%; }
+#chat-container form:after { content: ''; clear: both; }
