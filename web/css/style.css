@@ -314,3 +314,47 @@ thead>tr{
 }
 .join-game-link-games{
 }
+
+.ingame_display{
+    margin: 0;
+    display: block;
+    float: left;
+    height: 1100px;
+    width: 80%;
+    background-color:#0000FF;
+}
+
+.ingame_chat{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 1100px;
+    display: block;
+    float: left;
+    width: 20%;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+.ingame_chat_title{
+    font-size: 32px;
+}
+
+.ingame_chat p{
+    padding-left: 10px;
+}
+.ingame_chat p:first-letter{
+    color: darkgoldenrod;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.yoloswag{
+    width: 100%;
+    height: 800px;
+    position: absolute;
+    bottom: 0;
+}

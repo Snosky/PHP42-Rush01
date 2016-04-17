@@ -1,10 +1,12 @@
-You're in a game.
-Admin :
-<p><?php echo $game->getAdmin()->getUsername(); ?></p>
-Players :
-<ul>
+<div class="ingame_display">
+</div>
+<div class="ingame_chat">
+	<p class="ingame_chat_title">Welcome to <span class="bold"><?php echo $game->getAdmin()->getUsername(); ?></span>'s game!<br><br>
+	</p>
+	<p>Online Players :<BR><BR></p>
     <?php foreach ($game->getPlayers() as $player) : ?>
-        <li><?php echo $player->getUsername(); ?></li>
-    <?php endforeach; ?>
-</ul>
-<iframe src="<?php echo WEBROOT ?>chat/home/<?php echo $game->getId() ?>" frameborder="0"></iframe>
+        <p><?php echo $player->getUsername(); ?></p>
+    <?php endforeach; ?>	
+	<iframe src="<?php echo WEBROOT ?>chat/home/<?php echo $game->getId() ?>" frameborder="0"
+	class="yoloswag"></iframe>
+</div>
