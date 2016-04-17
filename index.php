@@ -1,10 +1,11 @@
 <?php
 session_start();
-error_reporting(E_ALL);
 
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 define('DS', DIRECTORY_SEPARATOR);
 define('WEBROOT', str_replace('index.php', '', $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']));
+
+include 'config.php';
 
 function __autoload($classname)
 {
