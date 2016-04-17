@@ -87,6 +87,7 @@
                     node = document.createElement("td");
                     textnode = document.createElement("a");
                     var link = document.createTextNode("Join game");
+                    textnode.className = "launcher-button";
                     textnode.appendChild(link);
                     node.className = 'join-game-link-games';
                     textnode.href = document.location.href + "/join/" + value.id;
