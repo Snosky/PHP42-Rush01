@@ -417,3 +417,6 @@ main{
     background-size: cover !important;
     background-repeat: no-repeat !important;
 }
+label{
+    color:darkgoldenrod;
+}
