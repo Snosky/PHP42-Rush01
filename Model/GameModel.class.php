@@ -8,6 +8,24 @@ use Domain\User;
 
 class GameModel extends Model
 {
+    /**
+     * @param User $user
+     * @return mixed
+     * Checks if $user is in game
+     */
+    public function UserInGame( User $user)
+    {
+        $sql = 'SELECT COUNT(*)
+                FROM t_game, t_game_has_t_user
+                WHERE t_game.usr_id=:usr_id
+                  OR  t_game_has_t_user.usr_id=:usr_id';
+        $row = $this->getDb()->prepare($sql);
+        $row->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
+        $row->execute();
+
+        return $row->fetch();
+    }
+
     public function addPlayer (Game $game, User $user)
     {
         $sql = 'INSERT INTO t_game_has_t_user (game_id, usr_id)
