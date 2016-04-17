@@ -19,7 +19,7 @@
             <p>Bug exploiting is allowed as long as you don't use a third party program to do it.</p>
         </div>
     </div>
-    <div id="chat-container"
+    <div id="chat-container">
         <?php if ($isConnected): ?>
             <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
         <?php endif ; if (!$isConnected): ?>
