@@ -1,0 +1,1 @@
+Initiates the Database from scratch
