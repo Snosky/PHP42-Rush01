@@ -1,0 +1,15 @@
+This class regroup all function necessary to interact with game page
+
+The class provides the following methods:
+
+homeAction():
+    Do all the things for the home page of game
+
+createAction():
+    Do all the things to create a game
+
+joinAction():
+    Do all the things to join a game
+
+leaveAction():
+    Do all the things to leave a game

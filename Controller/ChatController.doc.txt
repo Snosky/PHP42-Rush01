@@ -1,0 +1,12 @@
+This class regroup all function necessary to interact with chat page
+
+The class provides the following methods:
+
+homeAction($chat_id = 0);
+    Do all the thing for the home page of the chat
+
+addMessageAction();
+    Do all the things for add a message in the chat
+
+getMessageAction($chat_id = NULL);
+    Do all the things for get the message of a chat

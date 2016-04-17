@@ -1,0 +1,34 @@
+Abstract Controller give usefull method for child class
+
+The class provides the following methods:
+
+getUserDate();
+    Not used;
+
+redirect($url = '');
+    Redirect the user on the ask url, if empty url is null redirect to home page
+    if Ajax request call render;
+
+render($filename, $vars = array(), $layout = TRUE);
+    Generate html with the view and the vars given
+    if ajax request return a json_encode of all vars given
+
+loadModel($modelName)
+    load a model and create a var with his name
+
+addFlashMessage($type, $message)
+    Add a flash message (message who show one time and magically disapear)
+    Type : error || success
+
+connectUser(User $user)
+    Create session for user
+
+disconnectUser()
+    unset session user
+
+getActualUser()
+    Return the actual user from session user
+
+isAjax()
+    Return true or false if ajax request
+
