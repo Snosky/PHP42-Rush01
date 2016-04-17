@@ -42,6 +42,7 @@ abstract class Controller
 
         if ($this->isAjax())
         {
+            header('Content-Type: text/html; charset=UTF-8');
             echo json_encode($vars);
             die();
         }
