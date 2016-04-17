@@ -56,7 +56,7 @@ class ChatController extends Controller
         $messages = $chatModel->findByGame($chat_id);
 
         $this->render(NULL, array(
-            'messages'  => $messages,
+            'chatMessages'  => $messages,
         ));
     }
 }

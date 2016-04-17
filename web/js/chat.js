@@ -2,7 +2,6 @@ webroot = document.location.href;
 
 function addToChat(data)
 {
-console.log('addtochat');
     if (data.date !== 'undefined')
     {
         date = Date.parse(data.date.date);
@@ -21,9 +20,7 @@ function reloadChat()
         dataType: 'json',
         success: function(data){
             $('#chat-messages-display').html('');
-            if (data.messages === 'undefined')
-                data.messages = date.getMessages;
-            $.each(data.messages, function(key, value){
+            $.each(data.chatMessages, function(key, value){
                 addToChat(value);
             });
         },
@@ -41,7 +38,7 @@ function scrollToBot()
 
 $(document).ready(function(){
     scrollToBot();
-    setInterval(reloadChat, 1000);
+    setInterval(reloadChat, 500);
 
     // Send message
     $('#chat-send').submit(function(e){
