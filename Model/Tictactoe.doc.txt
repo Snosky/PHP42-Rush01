@@ -1,0 +1,11 @@
+The Tictactoe class is very simple yet elegant.
+It contains 2 attributes that are public. For ease of access purposes.
+The first is $map which contains an array with the map going from 0 to 8 and the second
+is turn which contains whose turns it is (either 'x' or 'o').
+
+The Tictactoe class contains 2 methods that you can use. The first is place($case).
+It places $this->turn ('x' or 'o') to $case (0-8).
+The second is checkEndCon() which checks if a player has won, or if it's a draw. You should call it
+everytime a player has finished playing.
+It will return 'x' if the 'x' player wins, 'o' if the 'o' player wins, true if it's a draw and false
+if the game can continue.
