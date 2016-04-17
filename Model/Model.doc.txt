@@ -1,0 +1,8 @@
+Abstract class : Does nothing by itself but is a necessary component of all the model classes.
+
+The model classes are in charge of the communication between the client and the database.
+
+Its constructor initiate the communication between them both.
+
+protected function buildDomainObject($row);
+      this function creates an object from the returns values of an SQL request to the database.

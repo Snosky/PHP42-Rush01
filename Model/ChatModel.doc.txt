@@ -1,0 +1,8 @@
+The Chat Model regroups all the functions necessary to interact with the chat table of the database.
+
+void    save(ChatMessage $msg);
+        add a msg in the database.
+
+ChatMessage    findByGame($chat_id);
+        returns all the messages incuded in the given game's chat.
+        returns an empty array if none exist.

@@ -54,18 +54,6 @@ class GameModel extends Model
         $game->addPlayer($user);
     }
     
-    public function removePlayer (Game $game, User $user)
-    {
-        $sql = 'DELETE *
-                FROM t_game
-                WHERE game_id=:game_id
-                    AND usr_id=:usr_id';
-        $row = $this->getDb()->prepare($sql);
-        $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
-        $row->bindValue(':usr_id', $user->getId(), \PDO::PARAM_INT);
-        $row->execute();
-    }
-    
     /**
      * @param Game $game
      * Adds or Updates game in Database
@@ -136,7 +124,7 @@ class GameModel extends Model
      * @return bool|Game
      * Search Database for a game with given admin
      */
-    public function findByAdmin( $admin )
+    public function findByAdmin( User $admin )
     {
         $sql = 'SELECT *
                 FROM t_game

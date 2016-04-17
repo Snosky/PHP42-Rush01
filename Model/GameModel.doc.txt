@@ -1,0 +1,32 @@
+The Game Model regroups all the functions necessary to interact with the game table of the database.
+
+int     userAlreadyPlay(User $user, Game $game);
+        returns 0 if the user isn't already in another game.
+        returns a positive int (1 normally) if he is.
+
+int     userInGame(User $user, Game $game);
+        returns 0 if the user isn't already in a specific game.
+        returns a positive int (1 normally) if he is.
+
+void    addPlayer(User $user, Game $game);
+        adds a player to a game.
+
+void    deleteUserFromGame(User $user, Game $game);
+        removes a player from a game.
+
+void    save(Game $game);
+        add (or update) a game in the database.
+
+void    delete(Game $game);
+        delete a game from the database.
+
+Game    findByAdmin(User $admin);
+        returns the game created by $admin.
+        returns False if it doesn't exist.
+
+Game    findById($id);
+        returns the game with a given $id.
+        returns False if it doesn't exist.
+
+Array    findAll();
+        returns an array containing all the games in the database;

@@ -1,0 +1,22 @@
+The User Model regroups all the functions necessary to interact with the User table of the database.
+
+void    save(User $user);
+        add (or update) a user in the database.
+
+void    delete(User $user);
+        delete a user from the database.
+
+User    findById($id);
+        returns the user with a given $id.
+        returns False if it doesn't exist.
+
+User    findByUsername($username);
+        returns the user with a given $username.
+        returns False if it doesn't exist.
+
+User    findByEmail($email);
+        returns the user with a given $email.
+        returns False if it doesn't exist.
+
+User    findAll();
+        returns an array containing all the users in the database.
