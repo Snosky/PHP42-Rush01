@@ -72,7 +72,7 @@ class UserController extends Controller
 
             if ($form_is_valid)
             {
-                $this->addFlashMessage('success', 'Vous etes inscrit mais pas encore en bdd :)');
+                $this->addFlashMessage('success', 'You\'ve successfully signed up, you may now log in');
                 $user->hashPassword($_POST['password']);
                 $user->setRole('ROLE_USER');
                 $userModel->save($user);
