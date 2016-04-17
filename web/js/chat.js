@@ -3,6 +3,12 @@ function addToChat(data)
     $('#chat-messages-display').append('<span class="chat-sender">' + data.user.username + '</span>' + data.message.message + '<br/>');
 }
 
+function reloadChat()
+{
+
+}
+
+
 webroot = document.location.href;
 
 // Send message
