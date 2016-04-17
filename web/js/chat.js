@@ -1,28 +1,16 @@
-function success(data)
+function addToChat(data)
 {
-    console.log(data);
+    $('#chat-display-message').append('<span class="chat-sender">' + data.user.username + '</span>' + data.message.message + '<br/>');
+    //console.log(data);
 }
 
 webroot = document.location.href;
 
-var data = {
-    'message': 'Mon 1er message',
-    'chat_id': 0,
-}
-/*
-$.ajax({
-  type: "POST",
-  url: webroot + 'chat/addMessage',
-  data: data,
-  success: success,
-  dataType: 'json'
-});
-*/
 // Send message
 $('#chat-send').submit(function(e){
     e.preventDefault();
 
-    var data = {
+    var msg_data = {
         'message': $('input[name=message]', this).val(),
         'chat_id': $('input[name=chat_id]', this).val(),
     };
@@ -30,10 +18,12 @@ $('#chat-send').submit(function(e){
     $.ajax({
       type: "POST",
       url: webroot + 'chat/addMessage',
-      data: data,
+      data: msg_data,
       dataType: 'json',
       success: function(data){
+        data.message = msg_data;
         console.log(data);
+        addToChat(msg_data)
       },
     });
 });

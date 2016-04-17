@@ -1,7 +1,7 @@
 <?php
 namespace Domain;
 
-class User
+class User implements \JsonSerializable
 {
     /**
      * @var integer
@@ -158,5 +158,13 @@ class User
         if (!$this->getSalt())
             $this->setSalt(substr(sha1(time()), 1, 35));
         $this->setPassword(hash('whirlpool', $raw_password.$this->getSalt()));
+    }
+
+    public function jsonSerialize()
+    {
+        $data = array();
+        $data['id'] = $this->getId();
+        $data['username'] = $this->getUsername();
+        return $data;
     }
 }
