@@ -111,6 +111,6 @@ class InstallController extends Controller
         }
         if (!$error)
             $this->redirect();
-        return;
+        echo 'DB INSTALL';
     }
 }
