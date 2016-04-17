@@ -110,7 +110,7 @@ class InstallController extends Controller
             }
         }
         if (!$error)
-            echo 'BDD OK';
+            $this->redirect();
         return;
     }
 }
