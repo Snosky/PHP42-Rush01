@@ -1,0 +1,10 @@
+ChatMessage class provide all method for a chat message
+
+The class provides the following methods:
+    Getters and Setters
+
+    testPassword($raw_password)
+        test if given $raw_password is equal to user password
+
+    hashPassword($raw_password)
+        hash and set the given raw_password
