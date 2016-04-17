@@ -38,7 +38,6 @@
                 while(gamesList.firstChild){
                     gamesList.removeChild(gamesList.firstChild);
                 }
-                console.log(data.games);
                 $.each(data.games, function(key, value){
                     var father = document.createElement("tr");
                     var node = document.createElement("td");
@@ -71,4 +70,5 @@
             }
         })
     }
+    setInterval(refreshGamesList, 30 * 1000);
 </script>
