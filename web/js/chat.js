@@ -1,7 +1,6 @@
 function addToChat(data)
 {
-    $('#chat-display-message').append('<span class="chat-sender">' + data.user.username + '</span>' + data.message.message + '<br/>');
-    //console.log(data);
+    $('#chat-messages-display').append('<span class="chat-sender">' + data.user.username + '</span>' + data.message.message + '<br/>');
 }
 
 webroot = document.location.href;
@@ -10,8 +9,10 @@ webroot = document.location.href;
 $('#chat-send').submit(function(e){
     e.preventDefault();
 
+    var input_message = $('input[name=message]', this);
+
     var msg_data = {
-        'message': $('input[name=message]', this).val(),
+        'message': input_message.val(),
         'chat_id': $('input[name=chat_id]', this).val(),
     };
 
@@ -23,7 +24,8 @@ $('#chat-send').submit(function(e){
       success: function(data){
         data.message = msg_data;
         console.log(data);
-        addToChat(msg_data)
+        addToChat(data);
+        input_message.val("");
       },
     });
 });
