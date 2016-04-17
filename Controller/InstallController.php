@@ -90,7 +90,7 @@ class InstallController extends Controller
                 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
                 ';
 
-        $db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS, array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+        $db = new \PDO('mysql:host='.DB_HOST.';', DB_USER, DB_PASS, array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
         $sql = explode(';', $sql);
         $error = FALSE;
         foreach ($sql as $line)
