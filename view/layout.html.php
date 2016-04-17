@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a href=<?php echo WEBROOT ?>>Home Page</a>
+        <a class="home-btn" href=<?php echo WEBROOT ?>>Home Page</a>
         <div id="user-info"></div>
     </header>
 
@@ -30,7 +30,7 @@
     <?php endif; ?>
 
     <?php echo $content_for_layout ?>
-    <footer>Footer here</footer>
+    <footer style="text-align:center;">卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐卐</footer>
     <script type="text/javascript" src="<?php echo WEBROOT ?>web/js/global.js"></script>
 </body>
 </html>
