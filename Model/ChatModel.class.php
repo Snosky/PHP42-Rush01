@@ -15,7 +15,7 @@ class ChatModel extends Model
             $sql = 'SELECT *
                     FROM t_chat_message
                     WHERE game_id=:game_id
-                    ORDER BY msg_id 
+                    ORDER BY msg_id DESC
                     LIMIT 100';
             $row = $this->getDb()->prepare($sql);
             $row->bindValue(':game_id', $chat_id, \PDO::PARAM_INT);
