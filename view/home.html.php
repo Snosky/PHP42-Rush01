@@ -20,12 +20,12 @@
         </div>
     </div>
     <div id="chat-container">
-            <?php if ($isConnected): ?>
-                <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
-            <?php endif ; if (!$isConnected): ?>
-                <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
-            <?php endif; ?>
-            <div id="inner-chat-container">
+        <?php if ($isConnected): ?>
+            <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
+        <?php endif ; if (!$isConnected): ?>
+            <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
+        <?php endif; ?>
+        <div id="inner-chat-container">
             <div id="chat-messages-display">
                 <?php foreach ($chatMessages as $msg): ?>
                     <span class="chat-sender">[<?php echo $msg->getDate()->format('G:i') ?>] <?php echo $msg->getUser()->getUsername(); ?></span>: <?php echo $msg->getContent(); ?><br />

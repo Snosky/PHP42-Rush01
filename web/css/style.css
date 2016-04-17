@@ -280,3 +280,58 @@ label{
     min-width: 500px;
     background: midnightblue;
 }
+
+thead>tr>td {
+    border: 2px groove black;
+    text-align: center;
+    font-family: fantasy;
+    font-size: 18pt;
+    line-height: 28pt;
+    padding-top: 4px;
+}
+
+thead>tr{
+    height: 28pt;
+}
+#main-games-list{
+    padding-left: 40px;
+}
+.games-list-container{
+    margin-top: 80px;
+    width: 50%;
+}
+
+#main-games-list tbody td{
+    margin: 0;
+    padding: 0;
+}
+.password-games{
+    width: 95px;
+    text-align: right;
+    border: none;
+}
+.name-games{
+    border: 1px solid black;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 40%;
+}
+.player-count-games{
+    border: 1px solid black;
+    width: 30px;
+    text-align: center;
+}
+.oneP{
+    color: #00ba14;
+}
+.twoP{
+    color: #00acba;
+}
+.threeP{
+    color: #e3b00b;
+}
+.fourP{
+    color: #840003;
+}
+.join-game-link-games{
+}
