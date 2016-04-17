@@ -1,12 +1,15 @@
 html{
     width: 100%;
 }
-
+a, footer{
+    background: url("http://img0.cfstatic.com/wallpapers/4a94771a0dc61ecdeaa7b3f58a34ed6f_large.jpeg");
+}
 header{
     width: 100%;
     height: 150px;
     background-color: black;
     color: mintcream;
+    background: url("http://img0.cfstatic.com/wallpapers/4a94771a0dc61ecdeaa7b3f58a34ed6f_large.jpeg");
 }
 footer{
     position: fixed;
@@ -400,5 +403,8 @@ thead>tr{
     display: block;
     height: 100%;
     width : 150px;
-    background: white;
+    background: url("http://messages.terrenouvelle.ca/wp-content/uploads/sites/2/2013/12/COMETE-ISON.jpg");
+    background-size: cover;
+    margin-left : 100px;
+    border-radius: 25%;
 }

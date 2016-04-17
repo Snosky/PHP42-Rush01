@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a class="home-btn" href=<?php echo WEBROOT ?>>Home Page</a>
+        <a class="home-btn" href=<?php echo WEBROOT ?>></a>
         <div id="user-info"></div>
     </header>
 
