@@ -7,13 +7,16 @@ use Domain\Game;
 class ChatModel extends Model
 {
 
-    function findByGame (Game $game)
+    function findByGame (Game $game,)
     {
         if ($game)
         {
+            // A Edit, SELECT WHERE date >= Date d'arrive de l'user sur la page
             $sql = 'SELECT *
                     FROM t_chat_message
-                    WHERE game_id=:game_id';
+                    WHERE game_id=:game_id
+                    ORDER BY date DESC
+                    LIMIT 100';
             $row = $this->getDb()->prepare($sql);
             $row->bindValue(':game_id', $game->getId(), \PDO::PARAM_INT);
         }
@@ -36,8 +39,8 @@ class ChatModel extends Model
 
     function save (ChatMessage $msg)
     {
-        $sql = 'INSERT INTO t_chat_message (msg_content, usr_id, game_id) 
-                VALUES (:msg_content, :usr_id, :game_id)';
+        $sql = 'INSERT INTO t_chat_message (msg_content, usr_id, game_id, date) 
+                VALUES (:msg_content, :usr_id, :game_id, NOW())';
         $row = $this->getDb()->prepare($sql);
         $row->bindValue(':msg_content', $msg->getContent(), \PDO::PARAM_STR);
         $row->bindValue(':usr_id', $msg->getUser()->getId(), \PDO::PARAM_INT);
