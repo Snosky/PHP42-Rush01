@@ -117,7 +117,7 @@ label{
 #chat-container{
     float: right;
     height: 100%;
-    width: 50%;
+    width: 40%;
 }
 
 #home-container{
@@ -239,6 +239,13 @@ label{
     font-size: 30pt;
     font-family: "Big Caslon";
     font-family: cursive;
+}
+
+#chat-messages-display{
+    background-color: antiquewhite;
+    margin: 0 10%;
+    padding-left: 2%;
+    height: 500px;
 }
 
 #create-container{

@@ -19,10 +19,12 @@
             <p>Bug exploiting is allowed as long as you don't use a third party program to do it.</p>
         </div>
     </div>
-    <?php if ($isConnected): ?>
-        <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
-    <?php endif ; if (!$isConnected): ?>
-        <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
-    <?php endif; ?>
-    <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0" width="100%" height="100%"></iframe>
+    <div id="chat-container"
+        <?php if ($isConnected): ?>
+            <a href=<?php echo WEBROOT ?>user/disconnect class="sign-button">Log out</a>
+        <?php endif ; if (!$isConnected): ?>
+            <a href=<?php echo WEBROOT ?>user class="sign-button">Sign in / Sign up</a>
+        <?php endif; ?>
+        <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0" width="100%" height="500px"></iframe>
+    </div>
 </main>
