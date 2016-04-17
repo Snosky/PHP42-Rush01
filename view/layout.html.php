@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Swag Alert!!</title>
+    <script type="text/javascript" src="<?php echo WEBROOT ?>web/js/jquery-1.12.3.min.js"></script>
     <link rel="stylesheet" href="<?php echo WEBROOT; ?>/web/css/reset.css">
     <link rel="stylesheet" href="<?php echo WEBROOT; ?>/web/css/style.css">
 </head>
@@ -30,7 +31,6 @@
 
     <?php echo $content_for_layout ?>
     <footer>Footer here</footer>
-    <script type="text/javascript" src="<?php echo WEBROOT ?>web/js/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="<?php echo WEBROOT ?>web/js/chat.js"></script>
 </body>
 </html>

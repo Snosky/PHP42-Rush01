@@ -1,7 +1,7 @@
 <?php
 namespace Domain;
 
-class Game
+class Game implements \JsonSerializable
 {
     /**
      * @var integer
@@ -89,5 +89,13 @@ class Game
     public function getPlayers()
     {
         return $this->players;
+    }
+    public function jsonSerialize() {
+        $array = array();
+        $array['id'] = $this->id;
+        $array['password'] = $this->password;
+        $array['admin'] = $this->admin;
+        $array['player'] = $this->players;
+        return $array;
     }
 }
