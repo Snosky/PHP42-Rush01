@@ -3,7 +3,7 @@
     <table class="games-list-container left-home-container">
         <thead>
             <tr>
-                <td>Private/Public</td>
+                <td style="border:none"></td>
                 <td style="font-weight: bolder;">Game</td>
                 <td>Players</td>
             </tr>
