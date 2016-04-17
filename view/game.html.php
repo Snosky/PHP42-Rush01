@@ -1,7 +1,7 @@
 <main>
 	<div class="ingame_display">
 	</div>
-	<a href="<?php echo (WEBROOT."/game/leave/".$game->getId());?>
+	<a href="<?php echo (WEBROOT."/game/leave/".$game->getId());?>">Leave dah game</a>
 	<div class="ingame_chat">
 		<p class="ingame_chat_title">Welcome to <span class="bold"><?php echo $game->getAdmin()->getUsername(); ?></span>'s game!<br><br>
 		</p>
