@@ -15,7 +15,9 @@
             <!-- Here is the list of games -->
         </tbody>
     </table>
-    <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0" width="100%" height="100%"></iframe>
+    <div id="chat-container">
+        <iframe src="<?php echo WEBROOT ?>/chat/" frameborder="0" width="100%" height="400px"></iframe>
+    </div>
 </main>
 <script>
     function refreshGamesList() {
